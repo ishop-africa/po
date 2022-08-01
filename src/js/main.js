@@ -71,13 +71,8 @@
 // }
 // initYoco();
 // app()
-var requestURL = 'https://api.exchangerate.host/latest';
-var request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
+import curencies from './currency'
 
-request.onload = function() {
-  var response = request.response;
-  console.log(response);
-}
+const c = curencies().then(d => {
+    console.log(d.result)
+})

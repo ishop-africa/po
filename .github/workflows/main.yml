@@ -1,0 +1,28 @@
+name: Oracle Site CI
+on: 
+  push:
+    branches:
+      - "main"
+  
+  pull_request:
+    branches:
+      - "main"
+env: 
+  REMOTE_TOKEN: "NODE"
+
+jobs: 
+  Build:
+    name: Build
+    runs-on: self-hosted
+    steps: 
+      - name: checkuout
+        uses: actions/checkout@v2
+      - name: setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: install dependencies
+        run: |
+          yarn && yarn build 
+      
+        

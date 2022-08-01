@@ -1,0 +1,4 @@
+{
+    "watch": [".public/", "src/"],
+    "ext": "js, css, ts "
+  }

@@ -1,4 +1,5 @@
-
+require('./currency.js')
+require("./yoco.js")
 require('./main.js')
 require('../css/main.css')
 require('../css/clients.scss')

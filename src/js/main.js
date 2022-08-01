@@ -71,8 +71,19 @@
 // }
 // initYoco();
 // app()
-import curencies from './currency'
 
-const c = curencies().then(d => {
-    console.log(d.result)
-})
+import initYoco from './yoco'
+
+(async () => {
+     const amount = sessionStorage.getItem('poAmmount')
+     const amountInCents= amount*100;
+     const publicKey = 'pk_test_ed3c54a6gOol69qa7f45' // Cahnge this when going live
+     console.log(amountInCents, amount)
+     const affliate = false;
+     const yocoData = {
+        amountInCents, publicKey
+     }
+     // Initialize Yoco
+     initYoco(yocoData)
+     
+}) ()

@@ -3,7 +3,7 @@ import { YocoInputDto } from "../types/yoco";
 import { PaymentsService } from "./payment-auth";
 
 const paynow= (data: PaymentDetailsDto) => {
-    const payments = new PaymentsService('e1189974afd6cbc67eaceb3565c2424c"');
+    const payments = new PaymentsService('nHlb2ARubNHJ3f9orOYXlxinJpePWpVRejZYh2l8TqbYWgYaMWZCr05dgJtfDmmL"');
     payments.YocoPayment(data);
     console.log(payments)
 }

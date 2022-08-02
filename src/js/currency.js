@@ -8,7 +8,6 @@ const curencies = async () => {
         sessionStorage.setItem("poAmmount", f.result)
         return f;
     }
-  
 }
 
 curencies();

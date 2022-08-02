@@ -1,6 +1,7 @@
 require('./currency.js')
 require("./yoco.js")
-require('./payment-ath.js')
+require('./index')
+require('./payment-auth')
 require('./main.js')
 require('../css/main.css')
 require('../css/clients.scss')

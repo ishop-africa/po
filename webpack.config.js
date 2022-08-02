@@ -25,18 +25,17 @@ module.exports = {
           "sass-loader",
         ],
       },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   use: ['babel-loader'],
+      // },
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
@@ -45,7 +44,6 @@ module.exports = {
     open: true,
     hot: true,
     compress: true,
-    host: "0.0.0.0",
     historyApiFallback: true,
   },
 

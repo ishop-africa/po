@@ -30,7 +30,7 @@
           </div>
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12">
             <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
-              <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+              <h3 id="po-title" class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                 Sign up Now
               </h3>
               <!-- // Registration Form -->
@@ -86,10 +86,11 @@
                     type="text"
                     class="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                     id="option"
-                    name="subscription"
+                    name="affliate"
                   />
-                <option value="#" selected >no</option>
-                <option value="#" >yes</option>
+                <option value="no" selected >no</option>
+                <option value="yes" >yes</option>
+                <input type="hidden" name="description" value="Learn 18 Morden Ways To make money online - Peter Oracle ">
               </select>
          
                 </div>
@@ -106,13 +107,14 @@
                 </p>
               </form>
               <!-- // Yoco Payments Form -->
+             
               <form id="payment-form" method="POST">
                 <div class="one-liner">
                   <div id="card-frame">
                     <!-- Yoco Inline form will be added here -->
                   </div>
                   <button id="pay-button">
-                    Pay $45
+                    Pay $45 <span id="pay-amount"></span>
                   </button>
                 </div>
                 <p class="success-payment-message" />

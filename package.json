@@ -5,8 +5,9 @@
   "description": "Ishop Africa iClients",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack serve"
+    "build": "webpack --env production",
+    "dev": "webpack serve",
+    "comp": "tsc -w"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",

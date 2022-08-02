@@ -1,11 +1,16 @@
 {
-    "compilerOptions": {
-      "sourceMap": true,
-      "target": "ES6",
-     "allowJs": true,
-     "esModuleInterop": true,
-     "outDir": "./src/js"
-    },
-    "exclude": ["node_modules"],
-    "include": ["main/**/*"]
-  }
+  "compilerOptions": {
+    "sourceMap": false,
+    "removeComments": true,
+    "target": "ES6",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "outDir": "./src/js"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "main/**/*"
+  ]
+}

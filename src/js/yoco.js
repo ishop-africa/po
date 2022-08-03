@@ -1,6 +1,6 @@
 import { PaymentsService } from "./payment-auth";
 const paynow = (data) => {
-    const payments = new PaymentsService('X7ni1pFKPXM1Jk553fbaFaBK0yi7j7xSNIQsVdVCMDb1sOEm8bbIGoJKLyFawRZR', 'http://server.local:7620/');
+    const payments = new PaymentsService('RyL2mrnk4KeCEHu2Z1HllQdSCkn21EDw2WBl3zArW32OQUYrfjyINzJhCq9nv5Hz', 'https://cloud.yapee.me/');
     payments.YocoPayment(data);
 };
 export const initYoco = (data) => {
@@ -36,7 +36,6 @@ export const initYoco = (data) => {
                     metadata: data.metadata,
                     customer: data.customer,
                 });
-                alert("card successfully tokenised: " + token.id);
             }
         }).catch(function (error) {
             submitButton.disabled = false;

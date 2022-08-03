@@ -24,15 +24,15 @@ export class PaymentsService {
             message: error.message
 
         }
-        console.log(error)
+       //console.log(error)
     }
-    console.log(this.response)
+   //console.log(this.response)
     return this.response;
 }
     congrate(response: PaymentResponse) {
         if (response.success) {
             const {metadata, customer} = response.data;
-            console.log(response)
+           //console.log(response)
             document.getElementById('userName').innerHTML = customer.firstName;
             if(metadata.affliate ==="yes") {
                 document.getElementById("isAfflite").classList.toggle("hidden");

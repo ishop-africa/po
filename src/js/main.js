@@ -7,13 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { initYoco } from "./yoco";
+import { initYoco, } from "./yoco";
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    var yoco = document.createElement('script');
+    yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
+    document.head.appendChild(yoco);
     let afliateToekn = "";
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
-    console.log(urlParams.get('al'));
     if (urlParams.get('al')) {
         const al = urlParams.get('al');
         afliateToekn = al;
@@ -24,13 +26,11 @@ import { initYoco } from "./yoco";
     const amount = (_a = sessionStorage.getItem('poAmmount')) === null || _a === void 0 ? void 0 : _a.toString();
     const amountInCents = Math.ceil(parseInt(amount) * 100);
     const publicKey = 'pk_test_ed3c54a6gOol69qa7f45';
-    console.log(amountInCents, amount);
     const Afliate = false;
     const emptyfields = [];
     let customerData;
     const registerForm = document.getElementById("po-signup-form");
     const title = document.getElementById("po-title");
-    const payAmount = document.getElementById("pay-amount");
     const yocoForm = document.getElementById("payment-form");
     yocoForm.classList.add('hidden');
     registerForm === null || registerForm === void 0 ? void 0 : registerForm.addEventListener('submit', (e) => {
@@ -39,7 +39,6 @@ import { initYoco } from "./yoco";
         const formData = new FormData(document.querySelector('#po-signup-form'));
         for (const [key, value] of formData.entries()) {
             if (value !== '') {
-                console.log(key, value);
                 customer[key] = value;
             }
             else {
@@ -54,12 +53,9 @@ import { initYoco } from "./yoco";
         const yocoData = {
             amountInCents, publicKey, metadata, customer, description
         };
-        console.log(yocoData);
         yocoForm.classList.remove('hidden');
-        payAmount.innerHTML = `Pay ${amountInCents}`;
         registerForm.classList.add('hidden');
         title.innerHTML = 'Make Payment';
-        console.log(yocoData);
         initYoco(yocoData);
     });
 }))();

@@ -56,6 +56,7 @@ import { initYoco, } from "./yoco";
         yocoForm.classList.remove('hidden');
         registerForm.classList.add('hidden');
         title.innerHTML = 'Make Payment';
+        console.log(yocoData);
         initYoco(yocoData);
     });
 }))();

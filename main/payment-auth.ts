@@ -18,21 +18,22 @@ export class PaymentsService {
         });
         this.response = await pay.json().then(res => res);
         this.congrate(this.response);
+        console.log(this.response)
     } catch (error) {
         this.response = {
             success: false,
             message: error.message
 
         }
-       //console.log(error)
+       console.log(error)
     }
-   //console.log(this.response)
+   console.log(this.response)
     return this.response;
 }
     congrate(response: PaymentResponse) {
         if (response.success) {
             const {metadata, customer} = response.data;
-           //console.log(response)
+           console.log(response)
             document.getElementById('userName').innerHTML = customer.firstName;
             if(metadata.affliate ==="yes") {
                 document.getElementById("isAfflite").classList.toggle("hidden");
@@ -42,7 +43,7 @@ export class PaymentsService {
            document.getElementById('payment-form').classList.toggle('hidden');
            document.getElementById('po-title').classList.toggle('hidden');
         } else {
-            alert("payment failed")
+            alert("payment failed Please Try Again")
         }
     }
 }

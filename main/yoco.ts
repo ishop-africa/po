@@ -1,11 +1,11 @@
 import { PaymentDetailsDto } from './../types/yoco.d';
 import { YocoInputDto } from "../types/yoco";
 import { PaymentsService } from "./payment-auth";
-
+console.log('LOCAL')
 const paynow = (data: PaymentDetailsDto) => {
     const payments = new PaymentsService(
-      'RyL2mrnk4KeCEHu2Z1HllQdSCkn21EDw2WBl3zArW32OQUYrfjyINzJhCq9nv5Hz',
-      'https://cloud.yapee.me/');
+      'm0Xq8hzzQxe93cNaVJckd9GPkCQhhYGEHwSfWCaqArZIu8vGjxhTncB5pSEWSLiy',
+      'http://localhost:6780/');
     payments.YocoPayment(data);
     // congratulations(payments)
 }
@@ -53,7 +53,7 @@ export const initYoco = (data: YocoInputDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
-            // alert("card successfully tokenised: " + token.id);
+            alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

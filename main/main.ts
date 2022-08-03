@@ -63,7 +63,7 @@ import { initYoco,  } from "./yoco"
           // payAmount.innerHTML = `Pay ${amountInCents}`
           registerForm.classList.add('hidden')
           title.innerHTML = 'Make Payment';
-
+          console.log(yocoData)
           // @ts-ignore
           initYoco(yocoData)
 

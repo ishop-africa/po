@@ -1,5 +1,5 @@
 import { YocoPayCustomerDto } from "../types/yoco"
-import { initYoco, popUpYoco } from "./yoco"
+import { initYoco,  } from "./yoco"
 
 (async () => {
      var yoco = document.createElement('script');
@@ -59,13 +59,11 @@ import { initYoco, popUpYoco } from "./yoco"
           const yocoData = {
                amountInCents, publicKey, metadata, customer, description
           }
-          ////consolele.log(yocoData)
           yocoForm.classList.remove('hidden')
           // payAmount.innerHTML = `Pay ${amountInCents}`
           registerForm.classList.add('hidden')
           title.innerHTML = 'Make Payment';
 
-          ////consolele.log(yocoData)
           // @ts-ignore
           initYoco(yocoData)
 

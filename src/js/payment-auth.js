@@ -8,9 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export class PaymentsService {
-    constructor(yapeeKey) {
+    constructor(yapeeKey, url) {
         this.yapeeKey = yapeeKey;
-        this.url = "http://localhost:6790/";
+        this.url = url;
     }
     YocoPayment(data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -19,11 +19,12 @@ export class PaymentsService {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + this.yapeeKey
+                        'Authorization': 'Bearer  ' + this.yapeeKey
                     },
                     body: JSON.stringify(data)
                 });
-                this.response = yield pay.json();
+                this.response = yield pay.json().then(res => res);
+                this.congrate(this.response);
             }
             catch (error) {
                 this.response = {
@@ -32,7 +33,25 @@ export class PaymentsService {
                 };
                 console.log(error);
             }
+            console.log(this.response);
             return this.response;
         });
+    }
+    congrate(response) {
+        if (response.success) {
+            const { metadata, customer } = response.data;
+            console.log(response);
+            document.getElementById('userName').innerHTML = customer.firstName;
+            if (metadata.affliate === "yes") {
+                document.getElementById("isAfflite").classList.toggle("hidden");
+                document.getElementById("isAfflite").innerHTML = `and your alfliation link`;
+            }
+            document.getElementById('congratulations').classList.toggle('hidden');
+            document.getElementById('payment-form').classList.toggle('hidden');
+            document.getElementById('po-title').classList.toggle('hidden');
+        }
+        else {
+            alert("payment failed");
+        }
     }
 }

@@ -2,6 +2,17 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, popUpYoco } from "./yoco"
 
 (async () => {
+     let afliateToekn = ""
+     const query = window.location.search;
+     const urlParams = new URLSearchParams(query);
+     console.log(urlParams.get('al'));
+     if(urlParams.get('al')){
+          const al = urlParams.get('al');
+          afliateToekn = al;
+     }
+     const congratsDiv= document.getElementById('congratulations');
+     congratsDiv.classList.add('hidden');
+     document.getElementById("isAfflite").classList.toggle("hidden");
      const amount = sessionStorage.getItem('poAmmount')?.toString()
      //  @ts-ignore 
      const amountInCents = Math.ceil(parseInt(amount) * 100);
@@ -30,7 +41,9 @@ import { initYoco, popUpYoco } from "./yoco"
                     emptyfields.push(key)
                }
           }
-          const metadata = { ...customer }
+          (afliateToekn !== "") ? customer['affiliate_token'] = afliateToekn : null
+
+          const metadata = { ...customer,   }
           //   @ts-ignore 
           delete customer.affliate
           //   @ts-ignore 
@@ -48,7 +61,7 @@ import { initYoco, popUpYoco } from "./yoco"
           registerForm.classList.add('hidden')
           title.innerHTML = 'Make Payment';
 
-          // console.log(yocoData)
+          console.log(yocoData)
           // @ts-ignore
           initYoco(yocoData)
 

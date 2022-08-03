@@ -10,6 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { initYoco } from "./yoco";
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    let afliateToekn = "";
+    const query = window.location.search;
+    const urlParams = new URLSearchParams(query);
+    console.log(urlParams.get('al'));
+    if (urlParams.get('al')) {
+        const al = urlParams.get('al');
+        afliateToekn = al;
+    }
+    const congratsDiv = document.getElementById('congratulations');
+    congratsDiv.classList.add('hidden');
+    document.getElementById("isAfflite").classList.toggle("hidden");
     const amount = (_a = sessionStorage.getItem('poAmmount')) === null || _a === void 0 ? void 0 : _a.toString();
     const amountInCents = Math.ceil(parseInt(amount) * 100);
     const publicKey = 'pk_test_ed3c54a6gOol69qa7f45';
@@ -35,6 +46,7 @@ import { initYoco } from "./yoco";
                 emptyfields.push(key);
             }
         }
+        (afliateToekn !== "") ? customer['affiliate_token'] = afliateToekn : null;
         const metadata = Object.assign({}, customer);
         delete customer.affliate;
         const description = customer.description;
@@ -47,6 +59,7 @@ import { initYoco } from "./yoco";
         payAmount.innerHTML = `Pay ${amountInCents}`;
         registerForm.classList.add('hidden');
         title.innerHTML = 'Make Payment';
+        console.log(yocoData);
         initYoco(yocoData);
     });
 }))();

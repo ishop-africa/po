@@ -1,8 +1,7 @@
 import { PaymentsService } from "./payment-auth";
 const paynow = (data) => {
-    const payments = new PaymentsService('nHlb2ARubNHJ3f9orOYXlxinJpePWpVRejZYh2l8TqbYWgYaMWZCr05dgJtfDmmL"');
+    const payments = new PaymentsService('X7ni1pFKPXM1Jk553fbaFaBK0yi7j7xSNIQsVdVCMDb1sOEm8bbIGoJKLyFawRZR', 'http://server.local:7620/');
     payments.YocoPayment(data);
-    console.log(payments);
 };
 export const initYoco = (data) => {
     var sdk = new window.YocoSDK({

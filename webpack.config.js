@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle.js',
+    filename: 'oracle.js',
   },
   module: {
     rules: [

@@ -4,8 +4,8 @@ import { PaymentsService } from "./payment-auth";
 
 const paynow = (data: PaymentDetailsDto) => {
     const payments = new PaymentsService(
-      'X7ni1pFKPXM1Jk553fbaFaBK0yi7j7xSNIQsVdVCMDb1sOEm8bbIGoJKLyFawRZR',
-      'http://server.local:7620/');
+      'RyL2mrnk4KeCEHu2Z1HllQdSCkn21EDw2WBl3zArW32OQUYrfjyINzJhCq9nv5Hz',
+      'https://cloud.yapee.me/');
     payments.YocoPayment(data);
     // congratulations(payments)
 }

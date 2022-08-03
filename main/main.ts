@@ -2,22 +2,26 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, popUpYoco } from "./yoco"
 
 (async () => {
+     var yoco = document.createElement('script');
+     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
+     document.head.appendChild(yoco);
+
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);
-     console.log(urlParams.get('al'));
-     if(urlParams.get('al')){
+     ////consolele.log(urlParams.get('al'));
+     if (urlParams.get('al')) {
           const al = urlParams.get('al');
           afliateToekn = al;
      }
-     const congratsDiv= document.getElementById('congratulations');
+     const congratsDiv = document.getElementById('congratulations');
      congratsDiv.classList.add('hidden');
      document.getElementById("isAfflite").classList.toggle("hidden");
      const amount = sessionStorage.getItem('poAmmount')?.toString()
      //  @ts-ignore 
      const amountInCents = Math.ceil(parseInt(amount) * 100);
      const publicKey = 'pk_test_ed3c54a6gOol69qa7f45' // Cahnge this when going live
-     console.log(amountInCents, amount)
+     ////consolele.log(amountInCents, amount)
      const Afliate = false;
      const emptyfields = []
      // let metadata: YocoPayCustomerDto
@@ -26,7 +30,7 @@ import { initYoco, popUpYoco } from "./yoco"
      const registerForm = document.getElementById("po-signup-form");
      // Yoco Form 
      const title = document.getElementById("po-title");
-     const payAmount = document.getElementById("pay-amount");
+     // const payAmount = document.getElementById("pay-amount");
      const yocoForm = document.getElementById("payment-form");
      yocoForm.classList.add('hidden') // Hide yoco form forst
      registerForm?.addEventListener('submit', (e) => {
@@ -35,7 +39,7 @@ import { initYoco, popUpYoco } from "./yoco"
           const formData = new FormData(document.querySelector('#po-signup-form'));
           for (const [key, value] of formData.entries()) {
                if (value !== '') {
-                    console.log(key, value);
+                    ////consolele.log(key, value);
                     customer[key] = value
                } else {
                     emptyfields.push(key)
@@ -43,7 +47,7 @@ import { initYoco, popUpYoco } from "./yoco"
           }
           (afliateToekn !== "") ? customer['affiliate_token'] = afliateToekn : null
 
-          const metadata = { ...customer,   }
+          const metadata = { ...customer, }
           //   @ts-ignore 
           delete customer.affliate
           //   @ts-ignore 
@@ -53,15 +57,15 @@ import { initYoco, popUpYoco } from "./yoco"
           delete customer.description
 
           const yocoData = {
-               amountInCents, publicKey , metadata, customer, description
+               amountInCents, publicKey, metadata, customer, description
           }
-          console.log(yocoData)
+          ////consolele.log(yocoData)
           yocoForm.classList.remove('hidden')
-          payAmount.innerHTML = `Pay ${amountInCents}`
+          // payAmount.innerHTML = `Pay ${amountInCents}`
           registerForm.classList.add('hidden')
           title.innerHTML = 'Make Payment';
 
-          console.log(yocoData)
+          ////consolele.log(yocoData)
           // @ts-ignore
           initYoco(yocoData)
 

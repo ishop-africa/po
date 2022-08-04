@@ -1,4 +1,5 @@
 export const makePopup = () => {
+    
     const elem = `
     <div class="popup-inner h-3/4 flex h-full justify-center md:px-24 md:pt-34 md:mt-24 lg:px:24 px-4 items-center ">
     <div class="popup-content bg-white relative rounded-lg p-3 w-full flex justify-center items-center h-full h-full p-4">
@@ -26,6 +27,8 @@ export const makePopup = () => {
     const makeMoneyWithUs = document.getElementById('money-cta');
    
     if (makeMoneyWithUs) {
+        const d =  'popup fixed top-0 h-screen w-screen bg-gray-100 bg-opacity-75'
+        makeMoneyWithUs.className= d;
         setTimeout(() => {
             makeMoneyWithUs.classList.toggle('hidden');
         }, 1000);

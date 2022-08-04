@@ -24,6 +24,8 @@ export const makePopup = () => {
     `;
     const makeMoneyWithUs = document.getElementById('money-cta');
     if (makeMoneyWithUs) {
+        const d = 'popup fixed top-0 h-screen w-screen bg-gray-100 bg-opacity-75';
+        makeMoneyWithUs.className = d;
         setTimeout(() => {
             makeMoneyWithUs.classList.toggle('hidden');
         }, 1000);

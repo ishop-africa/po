@@ -1,4 +1,3 @@
-require('./currency.js')
 require("./yoco.js")
 require('./index')
 require('./payment-auth')

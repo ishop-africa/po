@@ -8,7 +8,7 @@ const paynow = (data: PaymentDetailsDto) => {
     const url = auth.url;
     const payments = new PaymentsService(key,url);
     payments.YocoPayment(data);
-    // congratulations(payments)
+   console.log({auth})
 }
 export const initYoco = (data: YocoInputDto) => {
     // @ts-ignore 

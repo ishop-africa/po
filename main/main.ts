@@ -1,5 +1,6 @@
 import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco,  } from "./yoco"
+import {curencies } from './curencies'
 
 (async () => {
      var yoco = document.createElement('script');
@@ -70,6 +71,10 @@ import { initYoco,  } from "./yoco"
      })
 
 })()
+
+curencies()
+
+
 
 
 

@@ -5,6 +5,7 @@ const paynow = (data) => {
     const url = auth.url;
     const payments = new PaymentsService(key, url);
     payments.YocoPayment(data);
+    console.log({ auth });
 };
 export const initYoco = (data) => {
     var sdk = new window.YocoSDK({

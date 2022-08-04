@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { initYoco, } from "./yoco";
+import { curencies } from './curencies';
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     var yoco = document.createElement('script');
@@ -60,3 +61,4 @@ import { initYoco, } from "./yoco";
         initYoco(yocoData);
     });
 }))();
+curencies();

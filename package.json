@@ -5,7 +5,7 @@
   "description": "Ishop Africa iClients",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --env production",
+    "build": "./scripts/build.sh BUILD",
     "dev": "webpack serve",
     "comp": "tsc -w",
     "app:dev": "./scripts/build.sh SETUP",

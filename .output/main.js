@@ -17,7 +17,7 @@ import { makePopup } from "./popup";
     var yoco = document.createElement('script');
     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
     document.head.appendChild(yoco);
-    console.log('Welcome');
+    const money = document.getElementById('make-money-with-peter-oracle');
     let afliateToekn = "";
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);

@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { PaymentsService } from "./payment-auth";
 import { auth } from './key';
 const paynow = (data) => {
@@ -5,10 +14,9 @@ const paynow = (data) => {
     const url = auth.url;
     const payments = new PaymentsService(key, url);
     payments.YocoPayment(data);
-    console.log({ auth });
 };
-export const initYoco = (data) => {
-    var sdk = new window.YocoSDK({
+export const initYoco = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    var sdk = yield new window.YocoSDK({
         publicKey: auth.publicKey
     });
     var inline = sdk.inline({
@@ -40,14 +48,13 @@ export const initYoco = (data) => {
                     metadata: data.metadata,
                     customer: data.customer,
                 });
-                alert("card successfully tokenised: " + token.id);
             }
         }).catch(function (error) {
             submitButton.disabled = false;
             alert("error occured: " + error);
         });
     });
-};
+});
 export const popUpYoco = () => {
     var yoco = new window.YocoSDK({
         publicKey: 'pk_test_ed3c54a6gOol69qa7f45',

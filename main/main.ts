@@ -3,6 +3,7 @@ import { initYoco,  } from "./yoco"
 import {curencies } from './curencies'
 
 (async () => {
+     await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
@@ -64,15 +65,15 @@ import {curencies } from './curencies'
           // payAmount.innerHTML = `Pay ${amountInCents}`
           registerForm.classList.add('hidden')
           title.innerHTML = 'Make Payment';
-          console.log(yocoData)
+         
           // @ts-ignore
-          initYoco(yocoData)
+          await initYoco(yocoData)
 
      })
 
 })()
 
-curencies()
+
 
 
 

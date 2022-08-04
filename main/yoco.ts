@@ -8,11 +8,11 @@ const paynow = (data: PaymentDetailsDto) => {
     const url = auth.url;
     const payments = new PaymentsService(key,url);
     payments.YocoPayment(data);
-   console.log({auth})
+  
 }
-export const initYoco = (data: YocoInputDto) => {
+export const initYoco = async  (data: YocoInputDto) => {
     // @ts-ignore 
-    var sdk = new window.YocoSDK({
+    var sdk = await new window.YocoSDK({
         publicKey: auth.publicKey // Cahnge this when going live
       });
     
@@ -54,7 +54,6 @@ export const initYoco = (data: YocoInputDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
-            alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

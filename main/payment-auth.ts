@@ -18,7 +18,7 @@ export class PaymentsService {
         });
         this.response = await pay.json().then(res => res);
         this.congrate(this.response);
-        console.log(this.response)
+        alert("payment successful")
     } catch (error) {
         this.response = {
             success: false,

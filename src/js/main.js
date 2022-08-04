@@ -11,6 +11,7 @@ import { initYoco, } from "./yoco";
 import { curencies } from './curencies';
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    yield curencies();
     var yoco = document.createElement('script');
     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
     document.head.appendChild(yoco);
@@ -57,8 +58,6 @@ import { curencies } from './curencies';
         yocoForm.classList.remove('hidden');
         registerForm.classList.add('hidden');
         title.innerHTML = 'Make Payment';
-        console.log(yocoData);
-        initYoco(yocoData);
+        yield initYoco(yocoData);
     });
 }))();
-curencies();

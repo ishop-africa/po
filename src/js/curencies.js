@@ -10,13 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export const curencies = () => __awaiter(void 0, void 0, void 0, function* () {
     const sessionAmount = sessionStorage.getItem('poAmmount');
     if (sessionAmount) {
+        console.log(sessionAmount);
         return sessionAmount;
     }
     else {
         const data = yield fetch('https://api.exchangerate.host/convert?from=USD&to=ZAR&amount=45');
         const f = yield data.json();
         sessionStorage.setItem("poAmmount", f.result);
+        console.log(sessionAmount);
+        window.location.reload();
         return f;
     }
-    console.log(sessionAmount);
 });

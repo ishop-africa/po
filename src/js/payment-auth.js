@@ -25,7 +25,7 @@ export class PaymentsService {
                 });
                 this.response = yield pay.json().then(res => res);
                 this.congrate(this.response);
-                console.log(this.response);
+                alert("payment successful");
             }
             catch (error) {
                 this.response = {

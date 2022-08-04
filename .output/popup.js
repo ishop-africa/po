@@ -16,7 +16,6 @@ export const makePopup = () => {
           </svg>
         </button>
        <div class="text-center flex justify-center items-center  pt-5 mt-6">
-   
         <a class=" bg-yellow-600 text-white heartbeat rounded-lg p-3  text-3xl lg:w-1/2" href="/learn.html"> Get started here</a>
        </div>
       </div>
@@ -24,10 +23,16 @@ export const makePopup = () => {
   </div>
     `;
     const makeMoneyWithUs = document.getElementById('money-cta');
-    makeMoneyWithUs.innerHTML = elem;
-    const makeMoneyWithUsClose = document.getElementsByClassName('popup-close')[0];
-    makeMoneyWithUsClose.addEventListener('click', () => {
-        makeMoneyWithUs === null || makeMoneyWithUs === void 0 ? void 0 : makeMoneyWithUs.classList.add('hidden');
-    });
-    return makeMoneyWithUs;
+    if (makeMoneyWithUs) {
+        setTimeout(() => {
+            makeMoneyWithUs.classList.toggle('hidden');
+        }, 1000);
+        makeMoneyWithUs.innerHTML = elem;
+        makeMoneyWithUs.classList.add('hidden');
+        const makeMoneyWithUsClose = document.getElementsByClassName('popup-close')[0];
+        makeMoneyWithUsClose.addEventListener('click', () => {
+            makeMoneyWithUs === null || makeMoneyWithUs === void 0 ? void 0 : makeMoneyWithUs.classList.toggle('hidden');
+        });
+        return makeMoneyWithUs;
+    }
 };

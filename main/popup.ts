@@ -1,5 +1,5 @@
 export const makePopup = () => {
-    const elem  = `
+    const elem = `
     <div class="popup-inner h-3/4 flex h-full justify-center md:px-24 md:pt-34 md:mt-24 lg:px:24 px-4 items-center ">
     <div class="popup-content bg-white relative rounded-lg p-3 w-full flex justify-center items-center h-full h-full p-4">
       <div class="popup-header">
@@ -16,23 +16,30 @@ export const makePopup = () => {
           </svg>
         </button>
        <div class="text-center flex justify-center items-center  pt-5 mt-6">
-   
         <a class=" bg-yellow-600 text-white heartbeat rounded-lg p-3  text-3xl lg:w-1/2" href="/learn.html"> Get started here</a>
        </div>
       </div>
     </div>
   </div>
     `;
- 
+
     const makeMoneyWithUs = document.getElementById('money-cta');
-    makeMoneyWithUs.innerHTML= elem
-    const makeMoneyWithUsClose = document.getElementsByClassName('popup-close')[0];
-    makeMoneyWithUsClose.addEventListener('click', () => {
-        makeMoneyWithUs?.classList.add('hidden');
+   
+    if (makeMoneyWithUs) {
+        setTimeout(() => {
+            makeMoneyWithUs.classList.toggle('hidden');
+        }, 1000);
+        makeMoneyWithUs.innerHTML = elem
+        makeMoneyWithUs.classList.add('hidden');
+        const makeMoneyWithUsClose = document.getElementsByClassName('popup-close')[0];
+        makeMoneyWithUsClose.addEventListener('click', () => {
+            makeMoneyWithUs?.classList.toggle('hidden');
+        }
+        );
+
+
+        return makeMoneyWithUs;
     }
-    );
 
-
-    return makeMoneyWithUs;
 
 }

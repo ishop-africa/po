@@ -1,7 +1,9 @@
 import { PaymentsService } from "./payment-auth";
-console.log('LOCAL');
+import { auth } from './key';
 const paynow = (data) => {
-    const payments = new PaymentsService('m0Xq8hzzQxe93cNaVJckd9GPkCQhhYGEHwSfWCaqArZIu8vGjxhTncB5pSEWSLiy', 'http://localhost:6780/');
+    const key = auth.key;
+    const url = auth.url;
+    const payments = new PaymentsService(key, url);
     payments.YocoPayment(data);
 };
 export const initYoco = (data) => {

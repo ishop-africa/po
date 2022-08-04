@@ -7,7 +7,10 @@
   "scripts": {
     "build": "webpack --env production",
     "dev": "webpack serve",
-    "comp": "tsc -w"
+    "comp": "tsc -w",
+    "app:dev": "./scripts/build.sh SETUP",
+    "app:stage": "./scripts/build.sh STAGE",
+    "app:live": "./scripts/build.sh RELEASE"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",

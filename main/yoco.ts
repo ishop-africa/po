@@ -13,7 +13,7 @@ const paynow = (data: PaymentDetailsDto) => {
 export const initYoco = (data: YocoInputDto) => {
     // @ts-ignore 
     var sdk = new window.YocoSDK({
-        publicKey: data.publicKey // Cahnge this when going live
+        publicKey: auth.publicKey // Cahnge this when going live
       });
     
       // Create a new dropin form instance

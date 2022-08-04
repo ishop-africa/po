@@ -8,7 +8,7 @@ const paynow = (data) => {
 };
 export const initYoco = (data) => {
     var sdk = new window.YocoSDK({
-        publicKey: data.publicKey
+        publicKey: auth.publicKey
     });
     var inline = sdk.inline({
         layout: 'basic',

@@ -49,6 +49,94 @@
 
 
 
+@media screen and  (min-width: 768px) {
+  .popup-title{
+    font-size: 3.875rem !important;
+  line-height: 5.25rem !important;
+  }
+  
+}
+
+@media screen and (max-width: 32rem) {
+  .popup-title{
+    font-size: .875rem;
+    line-height: .9rem ;
+  }
+  .popup-content {
+    padding: 0rem !important
+  }
+  .popup-inner{
+    padding-left: 0.1rem !important;
+    padding-right: 0.1rem !important;
+  }
+}
+
+.red-txt {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: #F87171;
+
+}
+
+.ltitle {
+  text-align: right;
+  text-decoration: underline;
+  text-decoration-color: #7c2d12;
+}
+
+.popup-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.75rem;
+}
+
+.po-close-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.po-started-btn {
+  display: flex;
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.po-btn-link {
+  padding: 0.75rem;
+  background-color: #D97706;
+  color: #ffffff;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  border-radius: 0.5rem;
+
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
+}
+
+#moneys-cta {
+  position: fixed;
+  top: 0;
+  background-color: #F3F4F6;
+  --bg-opacity: 0.75;
+  width: 100vw;
+  height: 100vh;
+}
+.money-cta {
+  position: fixed;
+  top: 0;
+  background-color: #F3F4F6;
+  opacity: 0.99;
+  width: 100vw;
+  height: 100vh;
+  padding: 3rem;
+}
 
 
 @-webkit-keyframes heartbeat {

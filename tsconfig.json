@@ -5,7 +5,7 @@
     "target": "ES6",
     "allowJs": true,
     "esModuleInterop": true,
-    "outDir": "./src/js"
+    "outDir": "./.output"
   },
   "exclude": [
     "node_modules"

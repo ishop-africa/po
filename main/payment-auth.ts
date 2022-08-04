@@ -18,7 +18,7 @@ export class PaymentsService {
         });
         this.response = await pay.json().then(res => res);
         this.congrate(this.response);
-        alert("payment successful")
+      
     } catch (error) {
         this.response = {
             success: false,
@@ -33,7 +33,7 @@ export class PaymentsService {
     congrate(response: PaymentResponse) {
         if (response.success) {
             const {metadata, customer} = response.data;
-           console.log(response)
+         
             document.getElementById('userName').innerHTML = customer.firstName;
             if(metadata.affliate ==="yes") {
                 document.getElementById("isAfflite").classList.toggle("hidden");
@@ -42,6 +42,7 @@ export class PaymentsService {
            document.getElementById('congratulations').classList.toggle('hidden');
            document.getElementById('payment-form').classList.toggle('hidden');
            document.getElementById('po-title').classList.toggle('hidden');
+           alert("payment successful")
         } else {
             alert("payment failed Please Try Again")
         }

@@ -6,3 +6,4 @@ key.js
 src/js/
 /src/js
 dist/oracle.js
+.output

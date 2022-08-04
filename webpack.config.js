@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  entry: './src/js/app.js',
+  entry: './.output/index.js',
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
@@ -10,12 +10,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, 'src/css'),
+        include: path.resolve(__dirname, 'css'),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.s[ac]ss$/i,
-        include: path.resolve(__dirname, 'src/css'),
+        include: path.resolve(__dirname, 'css'),
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",

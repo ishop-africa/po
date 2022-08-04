@@ -9,12 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { initYoco, } from "./yoco";
 import { curencies } from './curencies';
+import { makePopup } from "./popup";
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    makePopup();
     yield curencies();
     var yoco = document.createElement('script');
     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
     document.head.appendChild(yoco);
+    console.log('Welcome');
     let afliateToekn = "";
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
@@ -58,6 +61,6 @@ import { curencies } from './curencies';
         yocoForm.classList.remove('hidden');
         registerForm.classList.add('hidden');
         title.innerHTML = 'Make Payment';
-        yield initYoco(yocoData);
+        initYoco(yocoData);
     });
 }))();

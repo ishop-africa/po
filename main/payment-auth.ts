@@ -3,7 +3,6 @@ import { PaymentDetailsDto, PaymentResponse } from "../types/yoco";
 export class PaymentsService {
     // url: string = "http://localhost:6790/";
     response: PaymentResponse;
-    
     constructor(private yapeeKey: string, private url: string){}
 
     async YocoPayment(data: PaymentDetailsDto): Promise<PaymentResponse> {
@@ -27,7 +26,6 @@ export class PaymentsService {
         }
        console.log(error)
     }
-   console.log(this.response)
     return this.response;
 }
     congrate(response: PaymentResponse) {

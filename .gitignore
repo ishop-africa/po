@@ -3,3 +3,6 @@ key.json
 oracle.js
 key.ts
 key.js
+src/js/
+/src/js
+dist/oracle.js

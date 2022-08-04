@@ -33,7 +33,6 @@ export class PaymentsService {
                 };
                 console.log(error);
             }
-            console.log(this.response);
             return this.response;
         });
     }

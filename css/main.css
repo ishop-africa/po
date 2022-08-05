@@ -63,11 +63,14 @@
     line-height: .9rem ;
   }
   .popup-content {
-    padding: 0rem !important
+    padding: .1rem !important
   }
   .popup-inner{
-    padding-left: 0.1rem !important;
-    padding-right: 0.1rem !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
+  }
+  .money-cta {
+    padding:0.4rem !important;
   }
 }
 

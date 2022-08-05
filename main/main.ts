@@ -2,6 +2,18 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
+let isLoading = false;
+const loader = document.createElement('div');
+loader.id="po-loader-cover-container";
+loader.style.width='100vw';
+loader.style.height='100vH';
+loader.style.opacity="0.5";
+loader.innerHTML=`<div  class='po-loader-cover'>
+<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>`;
+document.body.appendChild(loader);
+if(isLoading) {  loader.classList.toggle('hidde');} else{  loader.classList.add('hidde');}
+loader.classList.add('hidden');
 (async () => {
      makePopup();
      await curencies()
@@ -43,8 +55,10 @@ import {makePopup} from "./popup"
           const yocoForm = document.getElementById("payment-form");
           yocoForm.classList.add('hidden') // Hide yoco form forst
           registerForm?.addEventListener('submit', (e) => {
+               loader.classList.toggle('hidde');
                e.preventDefault();
                const customer = {}
+             
                const formData = new FormData(document.querySelector('#po-signup-form'));
                for (const [key, value] of formData.entries()) {
                     if (value !== '') {
@@ -68,13 +82,22 @@ import {makePopup} from "./popup"
                const yocoData = {
                     amountInCents, publicKey, metadata, customer, description
                }
-               yocoForm.classList.remove('hidden')
-               // payAmount.innerHTML = `Pay ${amountInCents}`
-               registerForm.classList.add('hidden')
-               title.innerHTML = 'Make Payment';
-
-               // @ts-ignore
-               initYoco(yocoData)
+                // @ts-ignore
+                initYoco(yocoData)
+                loader.classList.remove('hidden')
+                setTimeout(()=> {
+                    yocoForm.classList.remove('hidden')
+                    // payAmount.innerHTML = `Pay ${amountInCents}`
+                    registerForm.classList.add('hidden')
+                    title.innerHTML = 'Make Payment';
+                    loader.classList.add('hidden')
+                },4000)
+             
+               // setTimeout(() => {
+               //      loader.classList.add('hidde'); 
+               //  },4000)
+ 
+              
 
 
           })

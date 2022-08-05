@@ -33,9 +33,11 @@ export const initYoco = (data) => __awaiter(void 0, void 0, void 0, function* ()
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         submitButton.disabled = true;
+        document.getElementById('po-loader-cover-container').classList.toggle('hidden');
         inline.createToken().then(function (result) {
             submitButton.disabled = false;
             if (result.error) {
+                document.getElementById('po-loader-cover-container').classList.toggle('hidden');
                 const errorMessage = result.error.message;
                 errorMessage && alert("error occured: " + errorMessage);
             }

@@ -8,6 +8,7 @@ module.exports = {
   },
   module: {
     rules: [
+
       {
         test: /\.css$/i,
         include: path.resolve(__dirname, 'css'),
@@ -25,6 +26,7 @@ module.exports = {
           "sass-loader",
         ],
       },
+      
       // {
       //   test: /\.(js|jsx)$/,
       //   exclude: /node_modules/,

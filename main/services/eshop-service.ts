@@ -1,4 +1,4 @@
-import { CartItems, CalculationOptionsType } from "../../types/estore"
+import { CartItems, CalculationOptionsType, CalculationResponse } from "../../types/estore"
 import { EstoreCustomerDto, YocoInputDto, YocoPayCustomerDto, PaymentDetailsDto } from "../../types/yoco"
 
 export class EshopService {
@@ -6,7 +6,7 @@ export class EshopService {
        
     }
 
-    public async getCart(): Promise<CartItems[]> {
+    public  getCart(): CartItems[] {
         console.log(this.CART)
         return this.CART
     }
@@ -60,7 +60,7 @@ export class EshopService {
         }
     }
 
-    public async calculateTotal(option: CalculationOptionsType): Promise<any> {
+    public  calculateTotal(option: CalculationOptionsType): number{
         let result = 0
         if (option === 'amountInCents') {
             result = this.CART.reduce((acc, item) => acc + item.amountInCents, 0)
@@ -68,8 +68,7 @@ export class EshopService {
         else {
             result = this.CART.reduce((acc, item) => acc + item.quantity, 0)
         }
-
-        return { option: result }
+        return result
 
     }
 

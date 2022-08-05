@@ -59,26 +59,59 @@
 
 @media screen and (max-width: 32rem) {
   .popup-title{
-    font-size: .875rem;
-    line-height: .9rem ;
+    font-size: 1.875rem;
+    line-height: 1.9rem ;
   }
   .popup-content {
     padding: .1rem !important
   }
   .popup-inner{
-    padding-left: 0.2rem !important;
-    padding-right: 0.2rem !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
   }
   .money-cta {
     padding:0.4rem !important;
   }
+  .ltitle, .sign-up{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .sign-up{
+    text-decoration: underline;
+    text-decoration-color: #7c2d12;
+  }
+  .ltitle{
+    text-align: left !important;
+  }
+  
+}
+.cartContanier{
+  display: flex;
+  position: fixed;
+  right:0;
+  top: 4%;
+  z-index: 19999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: .6rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.cartContanier:hover{
+  cursor: pointer;
+  transform: scale(1.02);
+  
 }
 
 .red-txt {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
   color: #F87171;
 
 }

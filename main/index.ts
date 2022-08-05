@@ -1,4 +1,5 @@
 require('../css/main.css')
+require('../css/estore.css')
 require('../css/clients.scss')
 export * from './yoco'
 export * from './main'

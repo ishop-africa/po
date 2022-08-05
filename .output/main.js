@@ -11,7 +11,6 @@ import { initYoco, yForm, } from "./yoco";
 import { curencies } from './curencies';
 import { makePopup } from "./popup";
 import { EshopPayments } from './estore';
-let isLoading = false;
 const loader = document.createElement('div');
 loader.id = "po-loader-cover-container";
 loader.style.width = '100vw';
@@ -21,12 +20,6 @@ loader.innerHTML = `<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
 document.body.appendChild(loader);
-if (isLoading) {
-    loader.classList.toggle('hidde');
-}
-else {
-    loader.classList.add('hidde');
-}
 loader.classList.add('hidden');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

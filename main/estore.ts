@@ -1,6 +1,6 @@
-import { CalculationOptionsType, CalculationResponse, CartItems } from '../types/estore';
-import { EstoreCustomerDto, PaymentDetailsDto, YocoInputDto, YocoPayCustomerDto } from '../types/yoco';
-export const EshopPayments = () => {
+import { CartItems } from '../types/estore';
+import { EshopService } from './services/eshop-service';
+export const EshopPayments = async () => {
     const bsJs = document.createElement("script")
     const bsCss = document.createElement('link')
     bsCss.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css';
@@ -14,6 +14,7 @@ export const EshopPayments = () => {
 
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
+        const service = await new EshopService(CART)
         eshopPaymentForm.classList.add('hidden')
         const link = document.getElementsByTagName("a")
         /**
@@ -31,10 +32,11 @@ export const EshopPayments = () => {
                     // @ts-ignore 
                     const category = categores[1].innerText
                     price.replace("R ", "")
-                    const amountInCents = Math.ceil(parseInt(price.replace('R ', '')) * 100)
-                    console.log({ name, category, amountInCents })
-
-                    console.log(CART)
+                    const unitPrice = Math.ceil(parseInt(price.replace('R ', '')) * 100)
+                    // console.log({ name, category, amountInCents })
+                    service.addToCart({name, category, unitPrice})
+                    console.log(service.getCart())
+                    service.calculateTotal('amountInCents').then(d=> console.log(d.option/100))
                     // eshopPaymentForm.classList.toggle('hidden')
                 })
             }
@@ -59,80 +61,3 @@ export const EshopPayments = () => {
 
 }
 
-export class EstoreService {
-    constructor(private CART: CartItems[]) {
-        EshopPayments()
-    }
-
-    public async getCart(): Promise<CartItems[]> {
-        return this.CART
-    }
-
-    public async addToCart(item: CartItems): Promise<CartItems[]> {
-        const inCart = this.CART.filter(indb => item.name === indb.name)
-        if (inCart.length > 0) {
-            inCart[0].quantity += 1
-            inCart[0].amountInCents *= inCart[0].quantity
-        }
-        else {
-            this.CART.push(item)
-        }
-        return this.CART
-    }
-
-    public async removeFromCart(item: CartItems): Promise<CartItems[]> {
-        this.CART = this.CART.filter(cartItem => cartItem.name !== item.name)
-        return this.CART
-    }
-
-    public async clearCart(): Promise<CartItems[]> {
-        this.CART = []
-        return this.CART
-    }
-
-    public async checkout(paymentDetails: EstoreCustomerDto): Promise<PaymentResponse> {
-        return
-    }
-
-    public async getPaymentDetails(yoco:YocoInputDto,customer: YocoPayCustomerDto ): Promise<PaymentDetailsDto> {
-        return {
-            amountInCents: 0,
-            currency: '',
-            token: '',
-            metadata: {
-                affliate: '',
-                email: '',
-                phone: '',
-                firstName: '',
-                lastName: ''
-            },
-            customer: {
-                email: '',
-                phone: '',
-                firstName: '',
-                lastName: ''
-            }
-        }
-    }
-
-    public async calculateTotal(option: CalculationOptionsType): Promise<any> {
-        let result = 0
-        if (option === 'amountInCents') {
-            result = this.CART.reduce((acc, item) => acc + item.amountInCents, 0)
-        }
-        else {
-            result = this.CART.reduce((acc, item) => acc + item.quantity, 0)
-        }
-
-        return { option: result }
-
-    }
-
-    public async getCustomerDetals(): Promise<CartItems[]> {
-        return this.CART
-    }
-
-
-
-
-}

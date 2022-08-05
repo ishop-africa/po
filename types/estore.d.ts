@@ -1,8 +1,9 @@
 export declare interface CartItems {
     name: string;
     category: string;
-    amountInCents: number;
-    quantity: number;
+    amountInCents?: number;
+    quantity?: number;
+    unitPrice: number;
     sessionId?: string;
 }
 

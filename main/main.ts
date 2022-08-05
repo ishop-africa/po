@@ -15,7 +15,6 @@ loader.innerHTML=`<div  class='po-loader-cover'>
 document.body.appendChild(loader);
 loader.classList.add('hidden');
 (async () => {
-     // loader.classList.add('hidden');
      makePopup();
      EshopPayments()
      await curencies()

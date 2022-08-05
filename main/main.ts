@@ -12,11 +12,11 @@ loader.style.opacity="0.5";
 loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
-document.body.appendChild(loader);
-loader.classList.add('hidden');
+// document.body.appendChild(loader);
+// loader.classList.add('hidden');
 (async () => {
-     makePopup();
-     EshopPayments()
+     // makePopup();
+     await EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';

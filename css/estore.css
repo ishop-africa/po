@@ -1,8 +1,9 @@
-#cartTotal{
+#cartTotal {
     position: absolute;
     width: 24px;
-    height: 24px; 
-    top:10px; right:5px;
+    height: 24px;
+    top: 10px;
+    right: 5px;
     border-radius: 50%;
     background: red;
     margin: -4px 0 0 -4px;
@@ -12,4 +13,30 @@
     padding: 2px;
     justify-content: center;
     align-items: center;
+}
+
+#rangeMinus,
+#rangePlus {
+    padding: .2rem;
+
+}
+
+#rangeMinus:hover,
+#rangePlus:hover {
+    cursor: pointer;
+    background: #ccc;
+}
+
+#rangeMinus {
+    border-radius: 0 10% 10 0;
+    border: 1px solid #ccc;
+
+
+}
+
+#rangePlus {
+    border-radius: 10% 0 0 10%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
 }

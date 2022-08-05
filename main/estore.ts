@@ -1,19 +1,16 @@
 import { CartItems } from '../types/estore';
 import { EshopService } from './services/eshop-service';
+/**
+ * @method EshopService
+ * 
+ * Depends on the presence of the following id on te curent page. p
+ * o-payment-form. if this id doe not exists the cart will not be rendered.
+ */
 export const EshopPayments = async () => {
-    const bsJs = document.createElement("script")
-    const bsCss = document.createElement('link')
-    bsCss.href = 'https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css';
-    bsCss.integrity = 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm';
-    bsCss.crossOrigin = 'anonymous'
-    const bsJQuery = document.createElement("script");
-    bsJQuery.src = 'https://code.jquery.com/jquery-3.2.1.slim.min.js';
-    bsJQuery.integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN";
-    bsJQuery.crossOrigin="anonymous";
+
+
     var CART: CartItems[] = [];
-    bsJs.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js";
-    bsJs.integrity = "sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p";
-    bsJs.crossOrigin = "anonymous";
+
     const shorpingCart = document.createElement("div")
     shorpingCart.className = "container"
     shorpingCart.id = "shoppingCart"
@@ -25,39 +22,56 @@ export const EshopPayments = async () => {
         <span id='cartTotal'></span>
     </div>
     `;
-
+    const rangePlus = document.createElement("input")
+    rangePlus.type = "number"
+    rangePlus.id = "rangePlus"
+    const rangeMinus = document.createElement("input")
+    rangeMinus.id = 'rangeMinus'
+    rangeMinus.type = "number"
+    const div = document.createElement("span")
+    div.className = "addMore flex justify center items center fixed bottom-20 right-50 mb-4 mr-4"
+    div.id = "addMore"
+    div.appendChild(rangePlus)
+    div.appendChild(rangeMinus)
     // for development only hook these elements to the head of the page
-
+    document.body.appendChild(div)
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
-        document.head.appendChild(bsCss)
-  
+        console.log("eshopPaymentForm")
+
         document.body.appendChild(shorpingCart)
         const service = new EshopService(CART)
         const cartTotal = document.getElementById('cartTotal')
-      
+        cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
         eshopPaymentForm.classList.add('hidden')
         const link = document.getElementsByTagName("a")
         /**
          * The Login in this Section extracts information form the HTML skeleton and creates a structred object CART
          */
         for (let i = 0; i < link.length; i++) {
-            if (link[i].innerHTML === "Order Now") {
-
+            if (link[i].innerText === "Order Now") {
+                console.log(link[i].innerText)
                 link[i].addEventListener('click', (e) => {
                     e.preventDefault();
-                    const pa = link[i].parentElement
+                    const current = e.target as HTMLAnchorElement
+                    current.parentElement
+                    console.log({ parent, tage: e.target })
+                    const pa = current.parentElement
                     const price = pa.parentElement.nextElementSibling.children[0].innerHTML
+                    console.log(pa.parentElement.nextElementSibling.children)
                     const categores = pa.parentElement.previousElementSibling.children
-                    const name = categores[0].innerHTML.replace(/[\n\r]/g, ''); // remove \n
+                    console.log(categores)
+                    const name = categores[0].innerHTML.replace(/[\n\r]/g, '').replace(';', ''); // remove \n
                     // @ts-ignore 
                     const category = categores[1].innerText
-                    price.replace("R ", "")
-                    const unitPrice = Math.ceil(parseInt(price.replace('R ', '')) * 100)
-                    // console.log({ name, category, amountInCents })
+                    price.replace(" ", "")
+                    const unitPrice = Math.ceil(parseInt(price.replace("R", "")))
+                    console.log('striped', unitPrice)
+
                     service.addToCart({ name, category, unitPrice })
-               
+                    console.log(CART)
                     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+
                     // eshopPaymentForm.classList.toggle('hidden')
                 })
             }
@@ -76,12 +90,16 @@ export const EshopPayments = async () => {
             }
             console.log(customer)
         })
+
         const cartContanier = document.getElementById('cartContanier')
+        // On click on the cart Icon show the cart
+     
         cartContanier.addEventListener('click', () => {
             eshopPaymentForm.classList.toggle('hidden')
+            document.getElementById('shop').classList.toggle('hidden')
+            service.renderCart()
         })
-        document.body.appendChild(bsJQuery)
-        document.body.appendChild(bsJs)
+
     }
 
 }

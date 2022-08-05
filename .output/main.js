@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { initYoco, yForm, } from "./yoco";
 import { curencies } from './curencies';
-import { makePopup } from "./popup";
 import { EshopPayments } from './estore';
 const loader = document.createElement('div');
 loader.id = "po-loader-cover-container";
@@ -19,12 +18,9 @@ loader.style.opacity = "0.5";
 loader.innerHTML = `<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
-document.body.appendChild(loader);
-loader.classList.add('hidden');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    makePopup();
-    EshopPayments();
+    yield EshopPayments();
     yield curencies();
     var yoco = document.createElement('script');
     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';

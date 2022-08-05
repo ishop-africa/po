@@ -1,7 +1,8 @@
 import { YocoPayCustomerDto } from "../types/yoco"
-import { initYoco, } from "./yoco"
+import { initYoco, yForm, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
+import { EshopPayments } from './estore'
 let isLoading = false;
 const loader = document.createElement('div');
 loader.id="po-loader-cover-container";
@@ -16,12 +17,14 @@ if(isLoading) {  loader.classList.toggle('hidde');} else{  loader.classList.add(
 loader.classList.add('hidden');
 (async () => {
      makePopup();
+     EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
      const money = document.getElementById('make-money-with-peter-oracle');
-    
+    if (money) {
+     
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);
@@ -31,10 +34,6 @@ loader.classList.add('hidden');
           afliateToekn = al;
      }
    
- 
-          // makeMoneyithOracle.appendChild(makDiv);
-         
-          // makemoneyOnline.appendChild(document.createElement(makeMoneyithOracle))
           const congratsDiv = document.getElementById('congratulations');
           congratsDiv.classList.add('hidden');
           document.getElementById("isAfflite").classList.toggle("hidden");
@@ -74,7 +73,6 @@ loader.classList.add('hidden');
                //   @ts-ignore 
                delete customer.affliate
                //   @ts-ignore 
-
                const description = customer.description
                //   @ts-ignore 
                delete customer.description
@@ -82,6 +80,9 @@ loader.classList.add('hidden');
                const yocoData = {
                     amountInCents, publicKey, metadata, customer, description
                }
+               // Adds youco Form 
+               const yocoFormDiv = document.getElementById('YocoForm');
+               yocoFormDiv.innerHTML = yForm
                 // @ts-ignore
                 initYoco(yocoData)
                 loader.classList.remove('hidden')
@@ -93,14 +94,9 @@ loader.classList.add('hidden');
                     loader.classList.add('hidden')
                 },4000)
              
-               // setTimeout(() => {
-               //      loader.classList.add('hidde'); 
-               //  },4000)
- 
-              
-
 
           })
+     }
 })()
 
 

@@ -10,7 +10,7 @@ const paynow = (data: PaymentDetailsDto) => {
     payments.YocoPayment(data);
   
 }
-export const initYoco = async  (data: YocoInputDto) => {
+ const initYoco = async  (data: YocoInputDto) => {
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: auth.publicKey // Cahnge this when going live
@@ -69,7 +69,7 @@ export const initYoco = async  (data: YocoInputDto) => {
     
 }
 
-export const popUpYoco = () => {
+ const popUpYoco = () => {
   // @ts-ignore 
   var yoco = new window.YocoSDK({
     publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
@@ -95,3 +95,21 @@ export const popUpYoco = () => {
     })
   });
 }
+
+
+
+const yForm = `
+<form id="payment-form" method="POST">
+<div class="one-liner">
+  <div id="card-frame">
+    <!-- Yoco Inline form will be added here -->
+  </div>
+  <button id="pay-button">
+    Pay <span id="pay-amount"></span>
+  </button>
+</div>
+<p class="success-payment-message" />
+</form>
+`
+
+export { yForm, popUpYoco, initYoco}

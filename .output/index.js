@@ -4,3 +4,4 @@ export * from './yoco';
 export * from './main';
 export * from './payment-auth';
 export * from './popup';
+export * from './estore';

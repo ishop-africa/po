@@ -12,18 +12,18 @@ loader.style.opacity="0.6";
 loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
-document.body.appendChild(loader);
-loader.classList.add('hidden');
+// document.body.appendChild(loader);
+// loader.classList.add('hidden');
 (async () => {
      console.log('yoco INSIDE');
      makePopup();
-     // await EshopPayments()
+     await EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
      const money = document.getElementById('make-money-with-peter-oracle');
-    if (money) {
+     
      console.log(money)
      let afliateToekn = ""
      const query = window.location.search;
@@ -96,9 +96,7 @@ loader.classList.add('hidden');
              
 
           })
-     }else {
-          alert('Please login to make payment')
-     }
+   
 })()
 
 

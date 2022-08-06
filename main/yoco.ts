@@ -10,7 +10,7 @@ const paynow = (data: PaymentDetailsDto) => {
     payments.YocoPayment(data);
   
 }
-export const initYoco = async  (data: YocoInputDto) => {
+ const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: auth.publicKey // Cahnge this when going live
@@ -56,7 +56,7 @@ export const initYoco = async  (data: YocoInputDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
-            
+            // alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete
@@ -69,7 +69,7 @@ export const initYoco = async  (data: YocoInputDto) => {
     
 }
 
-export const popUpYoco = () => {
+ const popUpYoco = () => {
   // @ts-ignore 
   var yoco = new window.YocoSDK({
     publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
@@ -95,3 +95,21 @@ export const popUpYoco = () => {
     })
   });
 }
+
+
+
+export const yForm = `
+<form id="payment-form" method="POST">
+<div class="one-liner">
+  <div id="card-frame">
+    <!-- Yoco Inline form will be added here -->
+  </div>
+  <button id="pay-button">
+    Pay <span id="pay-amount"></span>
+  </button>
+</div>
+<p class="success-payment-message" />
+</form>
+`
+
+export {  popUpYoco, initYoco}

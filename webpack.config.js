@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  entry: './.output/index.js',
+  entry: './main/index.ts',
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
@@ -8,6 +8,7 @@ module.exports = {
   },
   module: {
     rules: [
+
       {
         test: /\.css$/i,
         include: path.resolve(__dirname, 'css'),
@@ -25,12 +26,12 @@ module.exports = {
           "sass-loader",
         ],
       },
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: ['babel-loader'],
-      // },
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+         
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {

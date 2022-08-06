@@ -5,7 +5,7 @@ export const makePopup = () => {
     <div class="popup-content ">
       <div class="popup-header">
         <div class="popup-title ">
-          <p>SIGN UP AND LEARN</p>
+          <p class='sign-up'>SIGN UP AND LEARN</p>
           <p class=" red-txt  ">18 MODERN WAYS TO MAKE MONEY ONLINE</p>
           <p class="ltitle">FOR ONLY $45</p>
         </div>
@@ -39,6 +39,5 @@ export const makePopup = () => {
         );
         return makeMoneyWithUs;
     }
-
 
 }

@@ -15,7 +15,7 @@ const paynow = (data) => {
     const payments = new PaymentsService(key, url);
     payments.YocoPayment(data);
 };
-export const initYoco = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const initYoco = (data, returnData = false) => __awaiter(void 0, void 0, void 0, function* () {
     var sdk = yield new window.YocoSDK({
         publicKey: auth.publicKey
     });
@@ -57,7 +57,7 @@ export const initYoco = (data) => __awaiter(void 0, void 0, void 0, function* ()
         });
     });
 });
-export const popUpYoco = () => {
+const popUpYoco = () => {
     var yoco = new window.YocoSDK({
         publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
     });
@@ -80,3 +80,17 @@ export const popUpYoco = () => {
         });
     });
 };
+const yForm = `
+<form id="payment-form" method="POST">
+<div class="one-liner">
+  <div id="card-frame">
+    <!-- Yoco Inline form will be added here -->
+  </div>
+  <button id="pay-button">
+    Pay <span id="pay-amount"></span>
+  </button>
+</div>
+<p class="success-payment-message" />
+</form>
+`;
+export { yForm, popUpYoco, initYoco };

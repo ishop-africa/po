@@ -1,5 +1,6 @@
-import { CartItems, CalculationOptionsType } from "../../types/estore"
+import { CartItems, CalculationOptionsType, FormTypes, PersonalDetailsForm, RenderDataObject } from "../../types/estore"
 import { EstoreCustomerDto, YocoInputDto, YocoPayCustomerDto, PaymentDetailsDto } from "../../types/yoco"
+import { initYoco } from "../yoco"
 
 export class EshopService {
     session: boolean
@@ -11,7 +12,9 @@ export class EshopService {
             this.renderCart
         }
     }
-
+    public formatCamelCaseString(str: string): string {
+        return str.split(/(?=[A-Z])/).join(' ')
+    }
     public getCart(): CartItems[] {
         console.log(this.CART)
         const stored = JSON.parse(sessionStorage.getItem('myCart'))
@@ -50,11 +53,16 @@ export class EshopService {
         this.CART = []
         return this.CART
     }
-
+    public async createCustomer(data: YocoInputDto): Promise<any> {
+        const response = await initYoco(data)
+        return response;
+    }
     public async checkout(paymentDetails: EstoreCustomerDto): Promise<PaymentResponse> {
         return
     }
-
+    public generateDescriptionFromCartItemNames(): string {
+        return this.CART.reduce((acc, item) => acc + item.name + ', ', '')
+    }
     public async getPaymentDetails(yoco: YocoInputDto, customer: YocoPayCustomerDto): Promise<PaymentDetailsDto> {
         return {
             amountInCents: 0,
@@ -152,7 +160,10 @@ export class EshopService {
         }
         return cartDiv
     }
-
-
+    public renderPersonalDetails(data: RenderDataObject<PersonalDetailsForm[]>): HTMLElement {
+        
+        return null;
+    }
+   
 
 }

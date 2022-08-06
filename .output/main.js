@@ -18,6 +18,8 @@ loader.style.opacity = "0.5";
 loader.innerHTML = `<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
+document.body.appendChild(loader);
+loader.classList.add('hidden');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     yield EshopPayments();

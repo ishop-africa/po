@@ -1,7 +1,7 @@
 import { CartItems } from "./estore";
 
 export interface YocoInputDto extends GeneralDto{
-    publicKey: string;
+    publicKey?: string;
     description: string
     [key: string]: any
 }
@@ -31,6 +31,7 @@ export declare interface EstoreCustomerDto extends PaymentDetailsDto {
 
 export declare interface YocoPayMetadataDto extends YocoPayCustomerDto{
     affliate: string
+    [key: string]: any
 }
 
 export interface PaymentDetailsDto extends GeneralDto {

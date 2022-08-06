@@ -10,7 +10,7 @@ const paynow = (data: PaymentDetailsDto) => {
     payments.YocoPayment(data);
   
 }
- const initYoco = async  (data: YocoInputDto) => {
+ const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: auth.publicKey // Cahnge this when going live
@@ -56,7 +56,7 @@ const paynow = (data: PaymentDetailsDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
-            
+            alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

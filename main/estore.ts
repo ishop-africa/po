@@ -1,9 +1,12 @@
+import { YocoInputDto, YocoPayMetadataDto } from './../types/yoco.d';
 /**
  * ALL CODE IN THIS FILE WILL NEED TO BE REFACTORED AND DOCUMENTED FOR MAINTAINABILITY AND READABILITY PURPOSES.
  * 
  */
-import { CartItems } from '../types/estore';
+import { CartItems, PersonalDetailsForm } from '../types/estore';
 import { EshopService } from './services/eshop-service';
+import { initYoco } from './yoco';
+import {InLineYocoForm} from '../templates/index';
 /**
  * @method EshopService
  * 
@@ -11,8 +14,6 @@ import { EshopService } from './services/eshop-service';
  * o-payment-form. if this id doe not exists the cart will not be rendered.
  */
 export const EshopPayments = async () => {
-
-
     var CART: CartItems[] = [];
     const service = new EshopService(CART)
     const shorpingCart = document.createElement("div")
@@ -127,34 +128,118 @@ export const EshopPayments = async () => {
                 cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
                 service.renderCart
                 window.location.reload()
+            })
+        }
+        // Checkout Slide In Div Actions and Styling 
+        const checkoutButton = document.getElementById("checkoutBtn")
+        const cartItemsDiv = document.getElementById("CartItemsDiv")
+        const personalDetailsDiv = document.getElementById("PersonalDetailsDiv")
+        const paymentDiv = document.getElementById("PaymentDiv")
+        if (checkoutButton) {
+            //Activates the personal Details form comtainer
+            checkoutButton?.addEventListener('click', (e) => {
+                e.preventDefault()
+                cartItemsDiv.classList.toggle('hidden')
+                personalDetailsDiv.classList.toggle('hidden')
+                // Create Personal Details Form and append to the div
+                const personalDetailsForm = document.createElement("form")
+                personalDetailsForm.id = "personalDetailsForm"
+                // add the form to PersonalDetailsForm Div
+                const PersonalDetailsFormContainer = document.getElementById('PersonalDetailsFormContainer')
 
+                const personalDataFormData: PersonalDetailsForm[] = [
+                    {
+                        name: "firstName", type: "text",
+                    },
+                    {
+                        name: "LastName", type: "text",
+                    },
+                    {
+                        name: "email", type: "email",
+                    },
+                    {
+                        name: "phone", type: 'text'
+                    },
+                    {
+                        name: "shippingAdress", type: 'textArea'
+                    }
+                ]
+                const PersonalDetailsCollectionForm = document.getElementById('PersonalDetailsCollectionForm')
+
+              
+                PersonalDetailsCollectionForm.addEventListener('submit', (e) => {
+                    e.preventDefault()
+                    const formInputs = document.getElementsByTagName("input")
+                    const formTextAreas = document.getElementsByTagName("textarea")
+                    const personalDetails = {}
+                    const emptyEntries = []
+                   for (let i = 0; i < formInputs.length; i++) {
+                        if (formInputs.item(i).value !== '') {
+                            personalDetails[formInputs.item(i).name] = formInputs.item(i).value
+                        } else {
+                            emptyEntries.push(formInputs.item(i).name)
+                        }
+                    }
+                   
+                    for (let i = 0; i < formTextAreas.length; i++) {
+                        if (formTextAreas.item(i).value !== '') {
+                            personalDetails[formTextAreas.item(i).name] = formTextAreas.item(i).value
+                        } else {
+                            emptyEntries.push(formTextAreas.item(i).name)
+                        }
+                    }
+                   
+                    if (emptyEntries.length > 0) {
+                        alert('Please fill in the following fields: ' + emptyEntries.join(', '))
+                    }
+                    else {
+                        const customer = {
+                            firstName: personalDetails['firstName'],
+                            lastName: personalDetails['lastName'],
+                            email: personalDetails['email'],
+                            phone: personalDetails['phone'],
+                        }
+                        const metadata: YocoPayMetadataDto = {
+                            ...customer,
+                            affliate: 'no',
+                            description: 'Shopping For : '+service.generateDescriptionFromCartItemNames() + ' Total Cost : ' +
+                             service.formatCurrency(service.calculateTotal('amountInCents')),
+                            shippingAddress: personalDetails['shippingAddress']
+
+                        }
+                        const amountInCents = service.calculateTotal('amountInCents') * 100
+                        const description = service.generateDescriptionFromCartItemNames()
+                        document.getElementById('subTotals').innerHTML =  ''+ service.formatCurrency(service.calculateTotal('amountInCents'))
+                        const PaymentDiv = document.getElementById('PaymentDiv')
+                        const yocoForm = document.getElementById('AddYocoForm')
+                        yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents/100))
+                        const loader = document.getElementById('po-loader-cover-container')
+                        personalDetailsDiv.className='bg-opacity-75'
+                        const YocoData: YocoInputDto = { customer, metadata, description, amountInCents }
+                        const yoco =initYoco(YocoData,true)
+                        loader.classList.toggle('hidden')
+                        setTimeout(() => {
+                            personalDetailsDiv.classList.toggle('hidden')
+                            loader.classList.toggle('hidden')
+                            PaymentDiv.classList.toggle('hidden')
+
+                        } , 4000)
+                        
+                    }
+
+
+
+                })
 
             })
-           
         }
 
-        const qtyInput = document.getElementById("qtyInput")
-        if (qtyInput) {
-            qtyInput.addEventListener('change', (e) => {
-                const current = e.target as HTMLInputElement
-                const qty = current.value
-                const index = current.dataset.index
-                service.updateCart(parseInt(index), parseInt(qty))
-                service.renderCart
-                console.log(CART)
-                console.log(service.calculateTotal('itemsInCart'))
-                // cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
-            })
-        
-        // Checkout Button
-        const checkoutButton = document.getElementById("checkoutButton")
-        } else {
-            console.log("qtyInput not found")
-        }
+
 
 
     }
 }
+
 
 
 

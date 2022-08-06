@@ -61,9 +61,9 @@ export class EshopService {
         return
     }
     public generateDescriptionFromCartItemNames(): string {
-        return this.CART.reduce((acc, item) => acc + item.name + ', ', '')
+        return this.CART.reduce((acc, item) => acc + item.name + ',','')
     }
-    public async getPaymentDetails(yoco: YocoInputDto, customer: YocoPayCustomerDto): Promise<PaymentDetailsDto> {
+    public async getPaymentDetails(yoco: YocoInputDto): Promise<PaymentDetailsDto> {
         return {
             amountInCents: 0,
             currency: '',
@@ -163,6 +163,10 @@ export class EshopService {
     public renderPersonalDetails(data: RenderDataObject<PersonalDetailsForm[]>): HTMLElement {
         
         return null;
+    }
+
+    public formatCurrency(amount: number, currency: string ='ZAR'): string {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount)
     }
    
 

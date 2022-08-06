@@ -15,7 +15,7 @@ const paynow = (data) => {
     const payments = new PaymentsService(key, url);
     payments.YocoPayment(data);
 };
-const initYoco = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const initYoco = (data, returnData = false) => __awaiter(void 0, void 0, void 0, function* () {
     var sdk = yield new window.YocoSDK({
         publicKey: auth.publicKey
     });

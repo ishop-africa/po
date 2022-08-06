@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { initYoco, yForm, } from "./yoco";
 import { curencies } from './curencies';
-import { EshopPayments } from './estore';
+import { makePopup } from "./popup";
+import { EshopPayments } from "./estore";
 const loader = document.createElement('div');
 loader.id = "po-loader-cover-container";
 loader.style.width = '100vw';
@@ -22,6 +23,7 @@ document.body.appendChild(loader);
 loader.classList.add('hidden');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    makePopup();
     yield EshopPayments();
     yield curencies();
     var yoco = document.createElement('script');

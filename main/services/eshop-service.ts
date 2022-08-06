@@ -168,6 +168,12 @@ export class EshopService {
     public formatCurrency(amount: number, currency: string ='ZAR'): string {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount)
     }
+    public get emptyCart(): void {
+        sessionStorage.removeItem('myCart')
+        this.CART = []
+        this.renderCart
+        return null
+    }
    
 
 }

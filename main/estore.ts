@@ -6,7 +6,7 @@ import { YocoInputDto, YocoPayMetadataDto } from './../types/yoco.d';
 import { CartItems, PersonalDetailsForm } from '../types/estore';
 import { EshopService } from './services/eshop-service';
 import { initYoco } from './yoco';
-import {InLineYocoForm} from '../templates/index';
+import { InLineYocoForm } from '../templates/index';
 /**
  * @method EshopService
  * 
@@ -166,21 +166,21 @@ export const EshopPayments = async () => {
                 ]
                 const PersonalDetailsCollectionForm = document.getElementById('PersonalDetailsCollectionForm')
 
-              
+
                 PersonalDetailsCollectionForm.addEventListener('submit', (e) => {
                     e.preventDefault()
                     const formInputs = document.getElementsByTagName("input")
                     const formTextAreas = document.getElementsByTagName("textarea")
                     const personalDetails = {}
                     const emptyEntries = []
-                   for (let i = 0; i < formInputs.length; i++) {
+                    for (let i = 0; i < formInputs.length; i++) {
                         if (formInputs.item(i).value !== '') {
                             personalDetails[formInputs.item(i).name] = formInputs.item(i).value
                         } else {
                             emptyEntries.push(formInputs.item(i).name)
                         }
                     }
-                   
+
                     for (let i = 0; i < formTextAreas.length; i++) {
                         if (formTextAreas.item(i).value !== '') {
                             personalDetails[formTextAreas.item(i).name] = formTextAreas.item(i).value
@@ -188,7 +188,7 @@ export const EshopPayments = async () => {
                             emptyEntries.push(formTextAreas.item(i).name)
                         }
                     }
-                   
+
                     if (emptyEntries.length > 0) {
                         alert('Please fill in the following fields: ' + emptyEntries.join(', '))
                     }
@@ -202,29 +202,30 @@ export const EshopPayments = async () => {
                         const metadata: YocoPayMetadataDto = {
                             ...customer,
                             affliate: 'no',
-                            description: 'Shopping For : '+service.generateDescriptionFromCartItemNames() + ' Total Cost : ' +
-                             service.formatCurrency(service.calculateTotal('amountInCents')),
+                            description: 'Shopping For : ' + service.generateDescriptionFromCartItemNames() + ' Total Cost : ' +
+                                service.formatCurrency(service.calculateTotal('amountInCents')),
                             shippingAddress: personalDetails['shippingAddress']
 
                         }
                         const amountInCents = service.calculateTotal('amountInCents') * 100
                         const description = service.generateDescriptionFromCartItemNames()
-                        document.getElementById('subTotals').innerHTML =  ''+ service.formatCurrency(service.calculateTotal('amountInCents'))
+                        document.getElementById('subTotals').innerHTML = '' + service.formatCurrency(service.calculateTotal('amountInCents'))
                         const PaymentDiv = document.getElementById('PaymentDiv')
                         const yocoForm = document.getElementById('AddYocoForm')
-                        yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents/100))
+                        yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents / 100))
                         const loader = document.getElementById('po-loader-cover-container')
-                        personalDetailsDiv.className='bg-opacity-75'
+                        personalDetailsDiv.className = 'bg-opacity-75'
                         const YocoData: YocoInputDto = { customer, metadata, description, amountInCents }
-                        const yoco =initYoco(YocoData,true)
+                        const yoco = initYoco(YocoData, true)
                         loader.classList.toggle('hidden')
                         setTimeout(() => {
                             personalDetailsDiv.classList.toggle('hidden')
                             loader.classList.toggle('hidden')
                             PaymentDiv.classList.toggle('hidden')
 
-                        } , 4000)
-                        
+                        }, 4000)
+
+
                     }
 
 
@@ -233,9 +234,13 @@ export const EshopPayments = async () => {
 
             })
         }
-
-
-
+        const completeOrder = document.getElementById('orderCompleteAndDone')
+        if (completeOrder) {
+            completeOrder.addEventListener('click', () => {
+                service.emptyCart
+                window.location.reload()
+            })
+        }
 
     }
 }

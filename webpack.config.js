@@ -25,12 +25,11 @@ module.exports = {
           "sass-loader",
         ],
       },
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: ['babel-loader'],
-      // },
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {

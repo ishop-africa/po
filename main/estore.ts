@@ -1,3 +1,7 @@
+/**
+ * ALL CODE IN THIS FILE WILL NEED TO BE REFACTORED AND DOCUMENTED FOR MAINTAINABILITY AND READABILITY PURPOSES.
+ * 
+ */
 import { CartItems } from '../types/estore';
 import { EshopService } from './services/eshop-service';
 /**
@@ -10,7 +14,7 @@ export const EshopPayments = async () => {
 
 
     var CART: CartItems[] = [];
-
+    const service = new EshopService(CART)
     const shorpingCart = document.createElement("div")
     shorpingCart.className = "container"
     shorpingCart.id = "shoppingCart"
@@ -22,25 +26,24 @@ export const EshopPayments = async () => {
         <span id='cartTotal'></span>
     </div>
     `;
+    const closeCart = document.getElementsByClassName("closeCart")
+    console.log(
+        closeCart.length
+    )
     const rangePlus = document.createElement("input")
     rangePlus.type = "number"
     rangePlus.id = "rangePlus"
     const rangeMinus = document.createElement("input")
     rangeMinus.id = 'rangeMinus'
     rangeMinus.type = "number"
-    const div = document.createElement("span")
-    div.className = "addMore flex justify center items center fixed bottom-20 right-50 mb-4 mr-4"
-    div.id = "addMore"
-    div.appendChild(rangePlus)
-    div.appendChild(rangeMinus)
+
     // for development only hook these elements to the head of the page
-    document.body.appendChild(div)
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
         console.log("eshopPaymentForm")
 
         document.body.appendChild(shorpingCart)
-        const service = new EshopService(CART)
+
         const cartTotal = document.getElementById('cartTotal')
         cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
         eshopPaymentForm.classList.add('hidden')
@@ -50,7 +53,7 @@ export const EshopPayments = async () => {
          */
         for (let i = 0; i < link.length; i++) {
             if (link[i].innerText === "Order Now") {
-                console.log(link[i].innerText)
+                console.log(link[i].innerHTML)
                 link[i].addEventListener('click', (e) => {
                     e.preventDefault();
                     const current = e.target as HTMLAnchorElement
@@ -67,11 +70,10 @@ export const EshopPayments = async () => {
                     price.replace(" ", "")
                     const unitPrice = Math.ceil(parseInt(price.replace("R", "")))
                     console.log('striped', unitPrice)
-
                     service.addToCart({ name, category, unitPrice })
                     console.log(CART)
                     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
-
+                    service.renderCart
                     // eshopPaymentForm.classList.toggle('hidden')
                 })
             }
@@ -90,17 +92,69 @@ export const EshopPayments = async () => {
             }
             console.log(customer)
         })
-
         const cartContanier = document.getElementById('cartContanier')
         // On click on the cart Icon show the cart
-     
+        const cartItemsContainer = document.getElementById("CartItemsContainer")
         cartContanier.addEventListener('click', () => {
             eshopPaymentForm.classList.toggle('hidden')
+            document.getElementById('shoppingCart').classList.add('hidden')
             document.getElementById('shop').classList.toggle('hidden')
-            service.renderCart()
+
         })
 
-    }
+        for (let close = 0; close < closeCart.length; close++) {
+            closeCart[close].addEventListener('click', () => {
+                eshopPaymentForm.classList.toggle('hidden')
+                document.getElementById('shoppingCart').classList.toggle('hidden')
+                document.getElementById('shop').classList.toggle('hidden')
+            })    // close the cart
+        }
+        // Renove it from Cart
+        const removeFromCart = document.getElementsByClassName("removeFromCart")
+        for (let r = 0; r < removeFromCart.length; r++) {
+            console.log(service.getCart[r])
+            const current = removeFromCart[r] as HTMLElement
+            document.getElementById(current.id).addEventListener('click', (e) => {
+                e.preventDefault()
+                console.log(current.id)
+                // @ts-ignore 
+                console.log(e.target.id)
+                const index = parseInt(current.id.split('_')[1])
+                console.log(index)
+                const currentObject = service.getCart()[index]
+                console.log(currentObject)
+                service.removeFromCart(currentObject)
+                cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+                service.renderCart
+                window.location.reload()
 
+
+            })
+           
+        }
+
+        const qtyInput = document.getElementById("qtyInput")
+        if (qtyInput) {
+            qtyInput.addEventListener('change', (e) => {
+                const current = e.target as HTMLInputElement
+                const qty = current.value
+                const index = current.dataset.index
+                service.updateCart(parseInt(index), parseInt(qty))
+                service.renderCart
+                console.log(CART)
+                console.log(service.calculateTotal('itemsInCart'))
+                // cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+            })
+        
+        // Checkout Button
+        const checkoutButton = document.getElementById("checkoutButton")
+        } else {
+            console.log("qtyInput not found")
+        }
+
+
+    }
 }
+
+
 

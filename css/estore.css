@@ -40,3 +40,25 @@
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
 }
+
+.subItem,
+.addItem {
+    @aply px-1;
+    cursor: pointer;
+}
+
+.qty {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    @apply w-full justify-center items-center flex;
+}
+
+.qtyCover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50% !important;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0.5em 0;
+}

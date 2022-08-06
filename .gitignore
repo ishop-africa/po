@@ -7,3 +7,5 @@ src/js/
 /src/js
 dist/oracle.js
 .output
+/images
+assets/images

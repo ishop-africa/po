@@ -10,6 +10,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { initYoco, } from "./yoco";
 import { curencies } from './curencies';
 import { makePopup } from "./popup";
+let isLoading = false;
+const loader = document.createElement('div');
+loader.id = "po-loader-cover-container";
+loader.style.width = '100vw';
+loader.style.height = '100vH';
+loader.style.opacity = "0.5";
+loader.innerHTML = `<div  class='po-loader-cover'>
+<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>`;
+document.body.appendChild(loader);
+if (isLoading) {
+    loader.classList.toggle('hidde');
+}
+else {
+    loader.classList.add('hidde');
+}
+loader.classList.add('hidden');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     makePopup();
@@ -17,7 +34,7 @@ import { makePopup } from "./popup";
     var yoco = document.createElement('script');
     yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
     document.head.appendChild(yoco);
-    console.log('Welcome');
+    const money = document.getElementById('make-money-with-peter-oracle');
     let afliateToekn = "";
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
@@ -39,6 +56,7 @@ import { makePopup } from "./popup";
     const yocoForm = document.getElementById("payment-form");
     yocoForm.classList.add('hidden');
     registerForm === null || registerForm === void 0 ? void 0 : registerForm.addEventListener('submit', (e) => {
+        loader.classList.toggle('hidde');
         e.preventDefault();
         const customer = {};
         const formData = new FormData(document.querySelector('#po-signup-form'));
@@ -58,9 +76,13 @@ import { makePopup } from "./popup";
         const yocoData = {
             amountInCents, publicKey, metadata, customer, description
         };
-        yocoForm.classList.remove('hidden');
-        registerForm.classList.add('hidden');
-        title.innerHTML = 'Make Payment';
         initYoco(yocoData);
+        loader.classList.remove('hidden');
+        setTimeout(() => {
+            yocoForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            title.innerHTML = 'Make Payment';
+            loader.classList.add('hidden');
+        }, 4000);
     });
 }))();

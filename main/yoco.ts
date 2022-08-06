@@ -35,6 +35,7 @@ export const initYoco = async  (data: YocoInputDto) => {
         // Disable the button to prevent multiple clicks while processing
         // @ts-ignore
         submitButton.disabled = true;
+        document.getElementById('po-loader-cover-container').classList.toggle('hidden')
         // This is the inline object we created earlier with the sdk
         inline.createToken().then(function (result) {
           // Re-enable button now that request is complete
@@ -43,6 +44,7 @@ export const initYoco = async  (data: YocoInputDto) => {
 
           submitButton.disabled = false;
           if (result.error) {
+            document.getElementById('po-loader-cover-container').classList.toggle('hidden')
             const errorMessage = result.error.message;
             errorMessage && alert("error occured: " + errorMessage);
           } else {
@@ -54,6 +56,7 @@ export const initYoco = async  (data: YocoInputDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
+            
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

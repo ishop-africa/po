@@ -28,9 +28,7 @@ export const EshopPayments = async () => {
     </div>
     `;
     const closeCart = document.getElementsByClassName("closeCart")
-    console.log(
-        closeCart.length
-    )
+  
     const rangePlus = document.createElement("input")
     rangePlus.type = "number"
     rangePlus.id = "rangePlus"
@@ -41,7 +39,6 @@ export const EshopPayments = async () => {
     // for development only hook these elements to the head of the page
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
-        console.log("eshopPaymentForm")
 
         document.body.appendChild(shorpingCart)
 
@@ -54,25 +51,20 @@ export const EshopPayments = async () => {
          */
         for (let i = 0; i < link.length; i++) {
             if (link[i].innerText === "Order Now") {
-                console.log(link[i].innerHTML)
                 link[i].addEventListener('click', (e) => {
                     e.preventDefault();
                     const current = e.target as HTMLAnchorElement
                     current.parentElement
-                    console.log({ parent, tage: e.target })
                     const pa = current.parentElement
                     const price = pa.parentElement.nextElementSibling.children[0].innerHTML
-                    console.log(pa.parentElement.nextElementSibling.children)
                     const categores = pa.parentElement.previousElementSibling.children
-                    console.log(categores)
+                   
                     const name = categores[0].innerHTML.replace(/[\n\r]/g, '').replace(';', ''); // remove \n
                     // @ts-ignore 
                     const category = categores[1].innerText
                     price.replace(" ", "")
                     const unitPrice = Math.ceil(parseInt(price.replace("R", "")))
-                    console.log('striped', unitPrice)
                     service.addToCart({ name, category, unitPrice })
-                    console.log(CART)
                     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
                     service.renderCart
                     // eshopPaymentForm.classList.toggle('hidden')
@@ -91,7 +83,7 @@ export const EshopPayments = async () => {
                     customer[key] = value
                 }
             }
-            console.log(customer)
+            //console.log(customer)
         })
         const cartContanier = document.getElementById('cartContanier')
         // On click on the cart Icon show the cart
@@ -113,17 +105,17 @@ export const EshopPayments = async () => {
         // Renove it from Cart
         const removeFromCart = document.getElementsByClassName("removeFromCart")
         for (let r = 0; r < removeFromCart.length; r++) {
-            console.log(service.getCart[r])
+            //console.log(service.getCart[r])
             const current = removeFromCart[r] as HTMLElement
             document.getElementById(current.id).addEventListener('click', (e) => {
                 e.preventDefault()
-                console.log(current.id)
+                //console.log(current.id)
                 // @ts-ignore 
-                console.log(e.target.id)
+                //console.log(e.target.id)
                 const index = parseInt(current.id.split('_')[1])
-                console.log(index)
+                //console.log(index)
                 const currentObject = service.getCart()[index]
-                console.log(currentObject)
+                //console.log(currentObject)
                 service.removeFromCart(currentObject)
                 cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
                 service.renderCart
@@ -236,6 +228,14 @@ export const EshopPayments = async () => {
         }
         const completeOrder = document.getElementById('orderCompleteAndDone')
         if (completeOrder) {
+            const fn= document.getElementsByClassName('orderCompleteAndDone')
+            for (let i = 0; i < fn.length; i++) {
+                const current = fn[i] as HTMLElement
+                current.addEventListener('click', (e) => {
+                    service.emptyCart
+                window.location.reload()
+                })
+            }
             completeOrder.addEventListener('click', () => {
                 service.emptyCart
                 window.location.reload()

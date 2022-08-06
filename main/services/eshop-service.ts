@@ -16,7 +16,6 @@ export class EshopService {
         return str.split(/(?=[A-Z])/).join(' ')
     }
     public getCart(): CartItems[] {
-        console.log(this.CART)
         const stored = JSON.parse(sessionStorage.getItem('myCart'))
         return this.session ? stored : this.CART
     }
@@ -33,7 +32,6 @@ export class EshopService {
             this.CART.push(item)
         }
         sessionStorage.setItem('myCart', JSON.stringify(this.CART))
-        console.log(sessionStorage.getItem('myCart'))
         return this.CART
     }
     public updateCart(index:number, qty:number): CartItems[] {
@@ -107,14 +105,13 @@ export class EshopService {
      */
     public get renderCart(): HTMLElement {
         const cartItems = this.getCart()
-        console.log(cartItems)
         const cartDiv = document.getElementById('CartItemsList')
         cartDiv.innerHTML = ''
         const subTotal = document.getElementById('subTotal')
         const total = this.calculateTotal('amountInCents')
         const Tocurrency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ZAR' }).format(total)
         subTotal.innerHTML = Tocurrency
-        
+        if(cartItems) {
         if (cartItems.length > 0) {
             
             // crate cart items table
@@ -154,6 +151,11 @@ export class EshopService {
             }
             )
         }else{
+            const elem = document.createElement('li')
+            elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
+            cartDiv.appendChild(elem)
+        }}
+        else {
             const elem = document.createElement('li')
             elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
             cartDiv.appendChild(elem)

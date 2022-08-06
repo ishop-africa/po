@@ -56,7 +56,7 @@ const paynow = (data: PaymentDetailsDto) => {
               metadata: data.metadata,
               customer: data.customer,
             })
-            alert("card successfully tokenised: " + token.id);
+            // alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

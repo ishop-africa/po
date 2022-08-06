@@ -343,15 +343,7 @@
                     <p>Subtotal</p>
                     <p id="subTotals"></p>
                   </div>
-                  <!-- <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p> -->
-
-                  <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                    <p>
-                      or <button type="button"
-                        class="font-medium closeCart text-yellow-600 hover:text-yellow-500">Continue
-                        Shopping<span aria-hidden="true"> &rarr;</span></button>
-                    </p>
-                  </div>
+                
                 </div>
               </div>
 
@@ -364,7 +356,7 @@
                     <span>Order Complete</span>
                   </h2>
                   <div class="ml-3 flex h-7 items-center">
-                    <button id="orderCompleteAndDone" type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <button id="orderCompleteAndDone" type="button" class="-m-2 orderCompleteAndDone p-2 text-gray-400 hover:text-gray-500">
                       <span class="sr-only">Close panel</span>
                       <!-- Heroicon name: outline/x -->
                       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -378,7 +370,11 @@
                 <div class="mt-8">
                   <div class="flow-root">
                     <div class="yocoform" id="order-success">
-
+                      
+                    </div>
+                    <div class="mt-6">
+                      <button
+                        class="flex w-full orderCompleteAndDone items-center justify-center rounded-md border border-transparent bg-yellow-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-yellow-700">Close</button>
                     </div>
                   </div>
                 </div>

@@ -98,7 +98,7 @@ const paynow = (data: PaymentDetailsDto) => {
 
 
 
-const yForm = `
+export const yForm = `
 <form id="payment-form" method="POST">
 <div class="one-liner">
   <div id="card-frame">
@@ -112,4 +112,4 @@ const yForm = `
 </form>
 `
 
-export { yForm, popUpYoco, initYoco}
+export {  popUpYoco, initYoco}

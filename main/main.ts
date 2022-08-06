@@ -1,5 +1,5 @@
 import { YocoPayCustomerDto } from "../types/yoco"
-import { initYoco, yForm, } from "./yoco"
+import { initYoco, yForm,} from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
 import { EshopPayments } from "./estore";
@@ -13,17 +13,18 @@ loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
 document.body.appendChild(loader);
-loader.classList.add('hidden');
+// loader.classList.add('hidden');
 (async () => {
-     makePopup();
-     await EshopPayments()
+     console.log('yoco INSIDE');
+     // makePopup();
+     // await EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
      const money = document.getElementById('make-money-with-peter-oracle');
     if (money) {
-     
+     console.log(money)
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);

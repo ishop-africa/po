@@ -8,15 +8,15 @@ const loader = document.createElement('div');
 loader.id="po-loader-cover-container";
 loader.style.width='100vw';
 loader.style.height='100vH';
-loader.style.opacity="0.5";
+loader.style.opacity="0.6";
 loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
 document.body.appendChild(loader);
-// loader.classList.add('hidden');
+loader.classList.add('hidden');
 (async () => {
      console.log('yoco INSIDE');
-     // makePopup();
+     makePopup();
      // await EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
@@ -96,6 +96,8 @@ document.body.appendChild(loader);
              
 
           })
+     }else {
+          alert('Please login to make payment')
      }
 })()
 

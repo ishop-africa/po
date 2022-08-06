@@ -8,6 +8,7 @@ export class PaymentsService {
     async YocoPayment(data: PaymentDetailsDto, shoper:boolean=false): Promise<PaymentResponse> {
         try {
             const strings= JSON.stringify(data)
+            // Change this endpoint at some point when stablizing the sysyem.
             const endpoint = 'shippingAddress' in data.metadata ? 'rec' : 'rec';
         const pay = await fetch(`${this.url}${endpoint}`, {
             method: 'POST',

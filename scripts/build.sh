@@ -4,6 +4,14 @@
 if [ "$1" == "BUILD" ]; then 
     webpack --env production
     exit 0
+elif [ "$1" == "ESTORE" ]; then
+    echo "replace oracle.js with estore"
+    sed -i 's/oracle.js/estore.js/g' webpack.config.js
+    webpack --env production -o .build
+    echo "Rplacing estore.js with oracle.js"
+     sed -i 's/estore.js/oracle.js/g' webpack.config.js
+    exit 0
+fi
 else
     if [ "$1" == "LOCAL" ]; then
         echo "Usage: build.sh <version>"

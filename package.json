@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "./scripts/build.sh BUILD",
+    "ebuild": "./scripts/build.sh ESTORE",
     "dev": "webpack serve",
     "comp": "tsc -w",
     "app:dev": "./scripts/build.sh SETUP",

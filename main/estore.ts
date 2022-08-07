@@ -169,7 +169,11 @@ export const EshopPayments = async () => {
                         if (formInputs.item(i).value !== '') {
                             personalDetails[formInputs.item(i).name] = formInputs.item(i).value
                         } else {
-                            emptyEntries.push(formInputs.item(i).name)
+                            if(formInputs.item(i).name !== 'animation'){
+                                emptyEntries.push(formInputs.item(i).name)
+                            }
+                           
+                            
                         }
                     }
 

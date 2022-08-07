@@ -169,24 +169,16 @@ export const EshopPayments = async () => {
                     const formTextAreas = document.getElementsByTagName("textarea")
                     const personalDetails = {}
                     const emptyEntries = []
-                    for (let i = 0; i < formInputs.length; i++) {
-                        if (formInputs.item(i).value !== '') {
-                            personalDetails[formInputs.item(i).name] = formInputs.item(i).value
-                        } else {
-                            if(formInputs.item(i).name !== 'animation'){
-                                emptyEntries.push(formInputs.item(i).name)
-                            }
-                           
-                            
-                        }
-                    }
+                 
 
-                    for (let i = 0; i < formTextAreas.length; i++) {
-                        if (formTextAreas.item(i).value !== '') {
-                            personalDetails[formTextAreas.item(i).name] = formTextAreas.item(i).value
-                        } else {
-                            emptyEntries.push(formTextAreas.item(i).name)
+                    const formData = new FormData(PersonalDetailsCollectionForm as HTMLFormElement);
+                    for (const [key, value] of formData.entries()) {
+                        if (value !== '') {
+                            personalDetails[key] = value
+                        }else {
+                            emptyEntries.push(key)
                         }
+
                     }
 
                     if (emptyEntries.length > 0) {

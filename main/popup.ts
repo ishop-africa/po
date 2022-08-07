@@ -28,7 +28,9 @@ export const makePopup = () => {
    
     if (makeMoneyWithUs) {
         setTimeout(() => {
+          if(!localStorage.getItem('po18L')){
             makeMoneyWithUs.classList.toggle('hidden');
+          }
         }, 1000);
         makeMoneyWithUs.innerHTML = elem
         makeMoneyWithUs.classList.add('hidden');

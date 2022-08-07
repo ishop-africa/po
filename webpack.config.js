@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  entry: './.output/index.js',
+  entry: './main/index.ts',
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
@@ -30,7 +30,7 @@ module.exports = {
       //   exclude: /node_modules/,
       //   use: ['babel-loader'],
       // },
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
     ],
   },
   resolve: {

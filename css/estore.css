@@ -15,7 +15,10 @@
     align-items: center;
 }
 #po-payment-form{
-    z-index: 89999;
+    z-index: 19999 !important;
+}
+.z19999 {
+    z-index: 19999 !important;
 }
 #rangeMinus,
 #rangePlus {

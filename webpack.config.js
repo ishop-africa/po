@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'oracle.js',
+    filename: 'estore.js',
   },
   module: {
     rules: [

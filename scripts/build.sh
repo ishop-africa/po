@@ -6,10 +6,10 @@ if [ "$1" == "BUILD" ]; then
     exit 0
 elif [ "$1" == "ESTORE" ]; then
     echo "replace oracle.js with estore"
-    sed -i 's/oracle.js/estore.js/g' webpack.config.js
+    awk'{sub(/oracle.js/,estore.js); print}'  webpack.config.js 
     webpack --env production -o .build
     echo "Rplacing estore.js with oracle.js"
-     sed -i 's/estore.js/oracle.js/g' webpack.config.js
+     awk'{sub(/estore.js/,oracle.js); print}'  webpack.config.js
     exit 0
 fi
 else

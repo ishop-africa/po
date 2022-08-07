@@ -127,9 +127,12 @@
 
 .popup-close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  margin: 1rem;
+  top: 5rem;
+  left: 1rem;
+  border-radius: 50%;
+  border: #7c2d12 solid 1px;
+  padding: 1px;
+  /* margin: 1rem; */
 }
 
 .po-close-icon {

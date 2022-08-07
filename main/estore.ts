@@ -6,7 +6,7 @@ import { YocoInputDto, YocoPayMetadataDto } from './../types/yoco.d';
 import { CartItems, PersonalDetailsForm } from '../types/estore';
 import { EshopService } from './services/eshop-service';
 import { initYoco } from './yoco';
-import { InLineYocoForm } from '../templates/index';
+import { InLineYocoForm, poForm } from '../templates/index';
 /**
  * @method EshopService
  * 
@@ -37,10 +37,14 @@ export const EshopPayments = async () => {
     rangeMinus.type = "number"
 
     // for development only hook these elements to the head of the page
+    const poform = document.createElement("div")
+    poform.innerHTML = poForm()
+    document.body.appendChild(poform)
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
 
         document.body.appendChild(shorpingCart)
+
 
         const cartTotal = document.getElementById('cartTotal')
         cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')

@@ -14,8 +14,15 @@ import { InLineYocoForm, poForm } from '../templates/index';
  * o-payment-form. if this id doe not exists the cart will not be rendered.
  */
 export const EshopPayments = async () => {
-    var CART: CartItems[] = [];
-    const service = new EshopService(CART)
+
+    const poform = document.createElement("div")
+    poform.id = "po-payment-form"
+    poform.className = "po-payment-form hidden"
+    poform.innerHTML = poForm()
+    document.body.appendChild(poform)
+    const modal = document.getElementById("mbr-popup-gh")
+    modal.parentNode.insertBefore(poform, modal.nextSibling)
+    const eshopPaymentForm = document.getElementById("po-payment-form")
     const shorpingCart = document.createElement("div")
     shorpingCart.className = "container"
     shorpingCart.id = "shoppingCart"
@@ -28,23 +35,19 @@ export const EshopPayments = async () => {
     </div>
     `;
     const closeCart = document.getElementsByClassName("closeCart")
-  
+
     const rangePlus = document.createElement("input")
     rangePlus.type = "number"
     rangePlus.id = "rangePlus"
     const rangeMinus = document.createElement("input")
     rangeMinus.id = 'rangeMinus'
     rangeMinus.type = "number"
+    var CART: CartItems[] = [];
+    const service = new EshopService(CART)
+
 
     // for development only hook these elements to the head of the page
-    const poform = document.createElement("div")
-    poform.id = "po-payment-form"
-    poform.className = "po-payment-form hidden"
-    poform.innerHTML = poForm()
-    document.body.appendChild(poform)
-    const modal = document.getElementById("mbr-popup-gh")
-    modal.parentNode.insertBefore(poform, modal.nextElementSibling)
-    const eshopPaymentForm = document.getElementById("po-payment-form")
+
     if (eshopPaymentForm) {
 
         document.body.appendChild(shorpingCart)
@@ -66,7 +69,7 @@ export const EshopPayments = async () => {
                     const pa = current.parentElement
                     const price = pa.parentElement.nextElementSibling.children[0].innerHTML
                     const categores = pa.parentElement.previousElementSibling.children
-                   
+
                     const name = categores[0].innerHTML.replace(/[\n\r]/g, '').replace(';', ''); // remove \n
                     // @ts-ignore 
                     const category = categores[1].innerText
@@ -76,6 +79,29 @@ export const EshopPayments = async () => {
                     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
                     service.renderCart
                     // eshopPaymentForm.classList.toggle('hidden')
+                })
+            } else if (link[i].innerText === "Order Book Now") {
+                // console.log(link[i].parentElement.nextSibling)
+                link[i].addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const current = e.target as HTMLAnchorElement
+                    current.parentElement
+                    const priceTag = current.parentElement.previousElementSibling
+                    const titleTag = priceTag.previousElementSibling
+                    let itemTitle = []
+                    for (let i = 0; i < titleTag.children.length; i++) {
+                        // @ts-ignore 
+                        itemTitle.push(titleTag.children[i].innerText)
+                    }
+                    const category = itemTitle[itemTitle.length - 1]
+                    itemTitle.splice(-1, 1)
+                    const name= itemTitle.join(" ")
+                    // @ts-ignore 
+                    const unitPrice = parseInt(priceTag.innerText.replace("Price: R", ""))
+                    service.addToCart({ name, category, unitPrice })
+                    cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+                    service.renderCart
+
                 })
             }
         }
@@ -100,6 +126,7 @@ export const EshopPayments = async () => {
             eshopPaymentForm.classList.toggle('hidden')
             document.getElementById('shoppingCart').classList.add('hidden')
             document.getElementById('menu1-be').classList.toggle('z10')
+            document.getElementById('menu1-aa').classList.toggle('z10')
             document.getElementById('shop').classList.toggle('hidden')
 
         })
@@ -107,6 +134,9 @@ export const EshopPayments = async () => {
         for (let close = 0; close < closeCart.length; close++) {
             closeCart[close].addEventListener('click', () => {
                 eshopPaymentForm.classList.toggle('hidden')
+                document.getElementById('menu1-be').classList.toggle('z10')
+                document.getElementById('menu1-aa').classList.toggle('z10')
+
                 document.getElementById('shoppingCart').classList.toggle('hidden')
                 document.getElementById('shop').classList.toggle('hidden')
             })    // close the cart
@@ -141,46 +171,25 @@ export const EshopPayments = async () => {
             checkoutButton?.addEventListener('click', (e) => {
                 e.preventDefault()
                 cartItemsDiv.classList.toggle('hidden')
-                personalDetailsDiv.classList.toggle('hidden')
+                personalDetailsDiv?.classList.toggle('hidden')
                 // Create Personal Details Form and append to the div
                 const personalDetailsForm = document.createElement("form")
                 personalDetailsForm.id = "personalDetailsForm"
                 // add the form to PersonalDetailsForm Div
-                const PersonalDetailsFormContainer = document.getElementById('PersonalDetailsFormContainer')
 
-                const personalDataFormData: PersonalDetailsForm[] = [
-                    {
-                        name: "firstName", type: "text",
-                    },
-                    {
-                        name: "LastName", type: "text",
-                    },
-                    {
-                        name: "email", type: "email",
-                    },
-                    {
-                        name: "phone", type: 'text'
-                    },
-                    {
-                        name: "shippingAdress", type: 'textArea'
-                    }
-                ]
                 const PersonalDetailsCollectionForm = document.getElementById('PersonalDetailsCollectionForm')
-
-
                 PersonalDetailsCollectionForm.addEventListener('submit', (e) => {
                     e.preventDefault()
-                    const formInputs = document.getElementsByTagName("input")
-                    const formTextAreas = document.getElementsByTagName("textarea")
+
                     const personalDetails = {}
                     const emptyEntries = []
-                 
+
 
                     const formData = new FormData(PersonalDetailsCollectionForm as HTMLFormElement);
                     for (const [key, value] of formData.entries()) {
                         if (value !== '') {
                             personalDetails[key] = value
-                        }else {
+                        } else {
                             emptyEntries.push(key)
                         }
 
@@ -233,12 +242,12 @@ export const EshopPayments = async () => {
         }
         const completeOrder = document.getElementById('orderCompleteAndDone')
         if (completeOrder) {
-            const fn= document.getElementsByClassName('orderCompleteAndDone')
+            const fn = document.getElementsByClassName('orderCompleteAndDone')
             for (let i = 0; i < fn.length; i++) {
                 const current = fn[i] as HTMLElement
                 current.addEventListener('click', (e) => {
                     service.emptyCart
-                window.location.reload()
+                    window.location.reload()
                 })
             }
             completeOrder.addEventListener('click', () => {

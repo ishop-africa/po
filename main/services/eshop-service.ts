@@ -34,7 +34,7 @@ export class EshopService {
         sessionStorage.setItem('myCart', JSON.stringify(this.CART))
         return this.CART
     }
-    public updateCart(index:number, qty:number): CartItems[] {
+    public updateCart(index: number, qty: number): CartItems[] {
         this.CART[index].quantity = qty
         this.CART[index].amountInCents = this.CART[index].unitPrice * qty
         return this.CART
@@ -59,7 +59,7 @@ export class EshopService {
         return
     }
     public generateDescriptionFromCartItemNames(): string {
-        return this.CART.reduce((acc, item) => acc + item.name + ',','')
+        return this.CART.reduce((acc, item) => acc + item.name + ',', '')
     }
     public async getPaymentDetails(yoco: YocoInputDto): Promise<PaymentDetailsDto> {
         return {
@@ -110,17 +110,18 @@ export class EshopService {
         const subTotal = document.getElementById('subTotal')
         const total = this.calculateTotal('amountInCents')
         const Tocurrency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ZAR' }).format(total)
-        subTotal.innerHTML = Tocurrency
-        if(cartItems) {
-        if (cartItems.length > 0) {
-            
-            // crate cart items table
-            cartItems.forEach((item, index) => {
-                
-                const ele = document.createElement("li")
-                
-                ele.className = "flex py-6"
-                ele.innerHTML = `
+        if (subTotal) {
+            subTotal.innerHTML = Tocurrency
+            if (cartItems) {
+                if (cartItems.length > 0) {
+
+                    // crate cart items table
+                    cartItems.forEach((item, index) => {
+
+                        const ele = document.createElement("li")
+
+                        ele.className = "flex py-6"
+                        ele.innerHTML = `
                 <div class="h-24 w-24 hidden flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
                     alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
@@ -147,27 +148,29 @@ export class EshopService {
                 </div>
         
                 `;
-                cartDiv.appendChild(ele)
+                        cartDiv.appendChild(ele)
+                    }
+                    )
+                } else {
+                    const elem = document.createElement('li')
+                    elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
+                    cartDiv.appendChild(elem)
+                }
             }
-            )
-        }else{
-            const elem = document.createElement('li')
-            elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
-            cartDiv.appendChild(elem)
-        }}
-        else {
-            const elem = document.createElement('li')
-            elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
-            cartDiv.appendChild(elem)
+            else {
+                const elem = document.createElement('li')
+                elem.innerHTML = "<button class='closeCart'>No items in cart - proceed to shopping</button>'"
+                cartDiv.appendChild(elem)
+            }
         }
         return cartDiv
     }
     public renderPersonalDetails(data: RenderDataObject<PersonalDetailsForm[]>): HTMLElement {
-        
+
         return null;
     }
 
-    public formatCurrency(amount: number, currency: string ='ZAR'): string {
+    public formatCurrency(amount: number, currency: string = 'ZAR'): string {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount)
     }
     public get emptyCart(): void {
@@ -176,6 +179,6 @@ export class EshopService {
         this.renderCart
         return null
     }
-   
+
 
 }

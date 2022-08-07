@@ -39,7 +39,7 @@ export const ShopingOrderSuccessfull = (name: string): string => `
 </div>`
 
 export const poForm = (): string => `
-<div class="po-payment-form hidden" id="po-payment-form">
+
 <div id="cartDtails mx-3" class="cartDtails po-cart">
     <div class="CartItemsContainer" id="CartItemsContainer"></div>
 </div>
@@ -284,6 +284,4 @@ export const poForm = (): string => `
 
     </div>
 </div>
-</div>
-
 `

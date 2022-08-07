@@ -38,8 +38,12 @@ export const EshopPayments = async () => {
 
     // for development only hook these elements to the head of the page
     const poform = document.createElement("div")
+    poform.id = "po-payment-form"
+    poform.className = "po-payment-form hidden"
     poform.innerHTML = poForm()
     document.body.appendChild(poform)
+    const modal = document.getElementById("mbr-popup-gh")
+    modal.parentNode.insertBefore(poform, modal.nextElementSibling)
     const eshopPaymentForm = document.getElementById("po-payment-form")
     if (eshopPaymentForm) {
 
@@ -95,6 +99,7 @@ export const EshopPayments = async () => {
         cartContanier.addEventListener('click', () => {
             eshopPaymentForm.classList.toggle('hidden')
             document.getElementById('shoppingCart').classList.add('hidden')
+            document.getElementById('menu1-be').classList.toggle('z10')
             document.getElementById('shop').classList.toggle('hidden')
 
         })

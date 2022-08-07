@@ -31,7 +31,7 @@ export class PaymentsService {
     congrate(response: PaymentResponse) {
         if (response.success) {
             const {metadata, customer} = response.data;
-         
+            document.getElementById('po-loader-cover-container').classList.toggle('hidden')
             document.getElementById('userName').innerHTML = customer.firstName;
             if(metadata.affliate ==="yes") {
                 document.getElementById("isAfflite").classList.toggle("hidden");
@@ -43,6 +43,7 @@ export class PaymentsService {
            alert("payment successful")
         } else {
             alert("payment failed Please Try Again")
+            document.getElementById('po-loader-cover-container').classList.toggle('hidden')
         }
     }
 }

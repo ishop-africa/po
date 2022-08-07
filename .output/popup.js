@@ -1,36 +1,38 @@
 export const makePopup = () => {
-    const elem = document.createElement('div');
-    elem.id = 'make-money-with-us';
-    elem.innerHTML = `
-    <div class="make-money-with-us">
-        <div class='cover'>
-        <div class="make-money-with-us-header">
-            <h1>Make Money With Us</h1>
-            <div class="make-money-with-us-close">
-
-                <i class="fas fa-times"></i>
-            </div>  
+    const elem = `
+    <div class="popup-inner  ">
+    <div class="popup-content ">
+      <div class="popup-header">
+        <div class="popup-title ">
+          <p>SIGN UP AND LEARN</p>
+          <p class=" red-txt  ">18 MODERN WAYS TO MAKE MONEY ONLINE</p>
+          <p class="ltitle">FOR ONLY $45</p>
         </div>
-        <div class="make-money-with-us-body">
-
-            <div class="make-money-with-us-body-content">   
-                <div class="make-money-with-us-body-content-header">
-                    <h2>Make Money With Us</h2>
-                    <p>
-                       SIGN UP AND LEARN 18 MODERN WAYS ON HOW TO MAKE MONEY ONLINE FOR ONLY $45
-                    </p>
-                </div>
-             
-            </div>
-        </div>
-        </div>
+        <button class="popup-close ">
+          <svg class="po-close-icon " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+       <div class="po-started-btn">
+        <a class=" po-btn-link heartbeat" href="/learn.html"> Get started here</a>
+       </div>
+      </div>
     </div>
+  </div>
     `;
-    document.body.appendChild(elem);
-    const makeMoneyWithUs = document.getElementById('make-money-with-us');
-    const makeMoneyWithUsClose = document.getElementsByClassName('make-money-with-us-close')[0];
-    makeMoneyWithUsClose.addEventListener('click', () => {
-        makeMoneyWithUs === null || makeMoneyWithUs === void 0 ? void 0 : makeMoneyWithUs.classList.add('hidden');
-    });
-    return makeMoneyWithUs;
+    const makeMoneyWithUs = document.getElementById('money-cta');
+    if (makeMoneyWithUs) {
+        setTimeout(() => {
+            makeMoneyWithUs.classList.toggle('hidden');
+        }, 1000);
+        makeMoneyWithUs.innerHTML = elem;
+        makeMoneyWithUs.classList.add('hidden');
+        const makeMoneyWithUsClose = document.getElementsByClassName('popup-close')[0];
+        makeMoneyWithUsClose.addEventListener('click', () => {
+            makeMoneyWithUs === null || makeMoneyWithUs === void 0 ? void 0 : makeMoneyWithUs.classList.toggle('hidden');
+        });
+        return makeMoneyWithUs;
+    }
 };

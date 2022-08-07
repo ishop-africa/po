@@ -2,7 +2,7 @@
 
 
 if [ "$1" == "BUILD" ]; then 
-    webpack --env production
+    webpack --env production -o build
     exit 0
 else
     if [ "$1" == "LOCAL" ]; then

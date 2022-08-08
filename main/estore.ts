@@ -7,6 +7,8 @@ import { CartItems, PersonalDetailsForm } from '../types/estore';
 import { EshopService } from './services/eshop-service';
 import { initYoco } from './yoco';
 import { InLineYocoForm, poForm } from '../templates/index';
+import { PaymentsService } from './payment-auth';
+import { auth } from './key';
 /**
  * @method EshopService
  * 
@@ -14,7 +16,10 @@ import { InLineYocoForm, poForm } from '../templates/index';
  * o-payment-form. if this id doe not exists the cart will not be rendered.
  */
 export const EshopPayments = async () => {
-
+    // GET THE CLIENT KEYS FROM THE SERVER
+    const authKey = auth;
+    const keys = await new PaymentsService(auth.key, auth.url).getClientKeys();
+    console.log(keys);
     const poform = document.createElement("div")
     poform.id = "po-payment-form"
     poform.className = "po-payment-form hidden"

@@ -67,4 +67,20 @@ export class PaymentsService {
             document.getElementById('po-loader-cover-container').classList.toggle('hidden')
         }
     }
+
+    async getClientKeys(provider: string='YOCO'): Promise<any> {
+        try {
+            const keys = await fetch(`${this.url}keys`, {
+                method: 'POST',
+                body: JSON.stringify({provider}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer  ' + this.yapeeKey
+                }
+            });
+            return keys.json().then(res => res);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

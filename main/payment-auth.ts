@@ -1,5 +1,5 @@
 import { ShopingOrderSuccessfull } from "../templates/index";
-import { PaymentDetailsDto, PaymentResponse } from "../types/yoco";
+import { AuthSecrets, PaymentDetailsDto, PaymentResponse } from "../types/yoco";
 
 export class PaymentsService {
     // url: string = "http://localhost:6790/";
@@ -68,19 +68,32 @@ export class PaymentsService {
         }
     }
 
-    async getClientKeys(provider: string='YOCO'): Promise<any> {
+    async getClientKeys(provider: string='YOCO'): Promise<AuthSecrets> {
         try {
-            const keys = await fetch(`${this.url}keys`, {
+            const keys = await fetch(`${this.url}auth-client-keys`, {
                 method: 'POST',
                 body: JSON.stringify({provider}),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer  ' + this.yapeeKey
+                    'Authorization': 'Bearer ' + this.yapeeKey
                 }
             });
-            return keys.json().then(res => res);
+            const resp = await keys.json().then(res => res);
+            console.log(resp)
+            sessionStorage.setItem('yapee-00', resp.secrets.pubKey);
+            return resp
         } catch (error) {
-            console.log(error)
+            console.log({error, provider})
         }
+    }
+
+    async  getPubKey(): Promise<string> {
+        const key = sessionStorage.getItem('yapee-00');
+        if (key) {
+            return key;
+        }else{
+            await this.getClientKeys();
+        }
+        return sessionStorage.getItem('yapee-00');
     }
 }

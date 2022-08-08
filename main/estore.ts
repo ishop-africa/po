@@ -19,7 +19,7 @@ export const EshopPayments = async () => {
     // GET THE CLIENT KEYS FROM THE SERVER
     const authKey = auth;
     const keys = await new PaymentsService(auth.key, auth.url).getClientKeys();
-    console.log(keys);
+    
     const poform = document.createElement("div")
     poform.id = "po-payment-form"
     poform.className = "po-payment-form hidden"

@@ -45,3 +45,10 @@ export interface PaymentResponse {
     message: string
     [key: string]: any
 }
+
+export declare interface AuthSecrets {
+    success: boolean
+    secrets: {
+        pubKey: string
+    }
+}

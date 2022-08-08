@@ -3,18 +3,21 @@ import { YocoInputDto } from "../types/yoco";
 import { PaymentsService } from "./payment-auth";
 import {auth} from './key'
 import { CartItems } from '../types/estore';
+const {key, url} = auth
+const payments = new PaymentsService(key,url);
 const paynow = (data: PaymentDetailsDto) => {
     // Read api key from key.json
-    const key = auth.key;
-    const url = auth.url;
-    const payments = new PaymentsService(key,url);
+  
     payments.YocoPayment(data);
   
 }
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
+  const pubkey = await payments.getPubKey();
+  console.log(pubkey)
+  alert(pubkey)
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
-        publicKey: auth.publicKey // Cahnge this when going live
+        publicKey: pubkey 
       });
     
       // Create a new dropin form instance

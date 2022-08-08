@@ -11,7 +11,8 @@ elif [ "$1" == "ESTORE" ]; then
     echo "Rplacing estore.js with oracle.js"
      awk'{sub(/estore.js/,oracle.js); print}'  webpack.config.js
     exit 0
-fi
+elif [ "$1" == "HASH" ]; then
+    openssl dgst -sha384 -binary dist/estore.js | openssl base64 -A -out dist/estore.js.sha384
 else
     if [ "$1" == "LOCAL" ]; then
         echo "Usage: build.sh <version>"

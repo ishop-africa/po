@@ -126,7 +126,8 @@ export const EshopPayments = async () => {
             eshopPaymentForm.classList.toggle('hidden')
             document.getElementById('shoppingCart').classList.add('hidden')
             document.getElementById('menu1-be').classList.toggle('z10')
-            document.getElementById('menu1-aa').classList.toggle('z10')
+            document.getElementsByClassName('manyi')[0].classList.toggle('z10')
+            document.getElementsByClassName('manyi')[0].classList.toggle('navbar-fixed-top')
             document.getElementById('shop').classList.toggle('hidden')
 
         })
@@ -136,7 +137,8 @@ export const EshopPayments = async () => {
                 eshopPaymentForm.classList.toggle('hidden')
                 document.getElementById('menu1-be').classList.toggle('z10')
                 document.getElementById('menu1-aa').classList.toggle('z10')
-
+                document.getElementsByClassName('manyi')[0].classList.toggle('z10')
+                document.getElementsByClassName('manyi')[0].classList.toggle('navbar-fixed-top')
                 document.getElementById('shoppingCart').classList.toggle('hidden')
                 document.getElementById('shop').classList.toggle('hidden')
             })    // close the cart
@@ -208,7 +210,7 @@ export const EshopPayments = async () => {
                         const metadata: YocoPayMetadataDto = {
                             ...customer,
                             affliate: 'no',
-                            description: 'Shopping For : ' + service.generateDescriptionFromCartItemNames() + ' Total Cost : ' +
+                            description:  service.generateDescriptionFromCartItemNames() + ' Total Cost : ' +
                                 service.formatCurrency(service.calculateTotal('amountInCents')),
                             shippingAddress: personalDetails['shippingAddress']
 
@@ -221,8 +223,8 @@ export const EshopPayments = async () => {
                         yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents / 100))
                         const loader = document.getElementById('po-loader-cover-container')
                         personalDetailsDiv.className = 'bg-opacity-75'
-                        const YocoData: YocoInputDto = { customer, metadata, description, amountInCents }
-                        const yoco = initYoco(YocoData, true)
+                        const YocoData: YocoInputDto = { customer, metadata, description, amountInCents, cart: service.getCart() }
+                        initYoco(YocoData, true)
                         loader.classList.toggle('hidden')
                         setTimeout(() => {
                             personalDetailsDiv.classList.toggle('hidden')

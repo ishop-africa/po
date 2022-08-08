@@ -2,6 +2,7 @@ import { PaymentDetailsDto } from './../types/yoco.d';
 import { YocoInputDto } from "../types/yoco";
 import { PaymentsService } from "./payment-auth";
 import {auth} from './key'
+import { CartItems } from '../types/estore';
 const paynow = (data: PaymentDetailsDto) => {
     // Read api key from key.json
     const key = auth.key;
@@ -26,8 +27,14 @@ const paynow = (data: PaymentDetailsDto) => {
         currency: 'ZAR'
       });
       // this ID matches the id of the element we created earlier.
+      let cart: CartItems[]
       inline.mount('#card-frame');
- 
+      if ('cart' in data) {
+        cart = data.cart
+        console.log(cart)
+        delete data.cart
+      }
+
       var form = document.getElementById('payment-form');
       var submitButton = document.getElementById('pay-button');
       form.addEventListener('submit', function (event) {
@@ -55,6 +62,7 @@ const paynow = (data: PaymentDetailsDto) => {
               token: token.id,
               metadata: data.metadata,
               customer: data.customer,
+              cartItems: cart? cart : []
             })
             // alert("card successfully tokenised: " + token.id);
           }

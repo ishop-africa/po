@@ -37,6 +37,7 @@ export declare interface YocoPayMetadataDto extends YocoPayCustomerDto{
 export interface PaymentDetailsDto extends GeneralDto {
     currency: string
     token: string
+    [key: string]: any
 }
 
 export interface PaymentResponse {

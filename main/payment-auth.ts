@@ -38,7 +38,7 @@ export class PaymentsService {
     congrate(response: PaymentResponse) {
         if (response.success) {
             document.getElementById('po-loader-cover-container').classList.add('hidden')
-
+            
             if ('shippingAddress' in response.data.metadata) {
                 // process shopper welcome information here
                 document.getElementById('PaymentDiv').classList.toggle('hidden')

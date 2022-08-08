@@ -59,7 +59,7 @@ export class EshopService {
         return
     }
     public generateDescriptionFromCartItemNames(): string {
-        return this.CART.reduce((acc, item) => acc + item.name + ',', '')
+        return 'A Purchase of ' + this.calculateTotal('itemsInCart') + ' items ' + ' worth ' + this.formatCurrency(this.calculateTotal('amountInCents')) +' from  Peter Oracle Website'
     }
     public async getPaymentDetails(yoco: YocoInputDto): Promise<PaymentDetailsDto> {
         return {
@@ -179,6 +179,5 @@ export class EshopService {
         this.renderCart
         return null
     }
-
 
 }

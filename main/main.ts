@@ -30,13 +30,12 @@ loader.classList.add('hidden');
      const urlParams = new URLSearchParams(query);
      ////consolele.log(urlParams.get('al'));
      if (urlParams.get('al')) {
-          const al = urlParams.get('al');
-          afliateToekn = al;
+          afliateToekn = urlParams.get('al') as string;
      }
    
-          const congratsDiv = document.getElementById('congratulations');
+          const congratsDiv = document.getElementById('congratulations')!;
           congratsDiv.classList.add('hidden');
-          document.getElementById("isAfflite").classList.toggle("hidden");
+          document.getElementById("isAfflite")!.classList.toggle("hidden");
           const amount = sessionStorage.getItem('poAmmount')?.toString()
           //  @ts-ignore 
           const amountInCents = Math.ceil(parseInt(amount) * 100);

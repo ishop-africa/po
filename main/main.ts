@@ -2,6 +2,7 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
+import { EshopPayments } from "./estore";
 let isLoading = false;
 const loader = document.createElement('div');
 loader.id="po-loader-cover-container";
@@ -17,6 +18,7 @@ loader.classList.add('hidden');
 (async () => {
      makePopup();
      await curencies()
+     await EshopPayments()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);

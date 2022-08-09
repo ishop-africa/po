@@ -203,7 +203,7 @@
 
   border: 8px solid #f3f3f3;
   /* Light grey */
-  border-top: 8x solid hwb(32 2% 14%);
+  border-top: 8x solid #db7705;
   /* yellow */
   border-radius: 50%;
   width: 120px;
@@ -253,7 +253,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: #db7705;
   margin: -4px 0 0 -4px;
 }
 

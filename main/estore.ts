@@ -20,7 +20,13 @@ export const EshopPayments = async () => {
     poform.id = "po-payment-form"
     poform.className = "po-payment-form hidden"
     poform.innerHTML = poForm()
-
+    // add audios page selector 
+    const audiospage = document.getElementById("po-store-page")
+    
+    audiospage.appendChild(poform)
+    if(audiospage){
+        audiospage.appendChild(poform)
+    }
     // const modal = document.getElementById("yastore")
     // if (modal) { modal.parentNode!.insertBefore(poform, modal.nextSibling) }
 

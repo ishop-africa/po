@@ -21,7 +21,8 @@ loader.classList.add('hidden');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
      const money = document.getElementById('make-money-with-peter-oracle');
-    
+    if(money) {
+     money.classList.remove('hidden');
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);
@@ -101,6 +102,7 @@ loader.classList.add('hidden');
 
 
           })
+     }
 })()
 
 

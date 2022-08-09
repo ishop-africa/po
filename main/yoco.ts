@@ -7,11 +7,9 @@ const {key, url} = auth
 const payments = new PaymentsService(key,url);
 const paynow = (data: PaymentDetailsDto) => {
     payments.YocoPayment(data);
-  
 }
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
   const pubkey = await payments.getPubKey();
-
 
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
@@ -32,7 +30,6 @@ const paynow = (data: PaymentDetailsDto) => {
       inline.mount('#card-frame');
       if ('cart' in data) {
         cart = data.cart
-        console.log(cart)
         delete data.cart
       }
 

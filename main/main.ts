@@ -2,6 +2,7 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
+import { EshopPayments } from "./estore";
 const loader = document.createElement('div');
 loader.id="po-loader-cover-container";
 loader.style.width='100vw';
@@ -14,6 +15,7 @@ document.body.appendChild(loader);
 loader.classList.add('hidden');
 (async () => {
      makePopup();
+     await EshopPayments()
      await curencies()
      var yoco = document.createElement('script');
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
@@ -35,7 +37,6 @@ loader.classList.add('hidden');
           const amount = sessionStorage.getItem('poAmmount')?.toString()
           //  @ts-ignore 
           const amountInCents = Math.ceil(parseInt(amount) * 100);
-          ////consolele.log(amountInCents, amount)
           const Afliate = false;
           const emptyfields = []
           // let metadata: YocoPayCustomerDto
@@ -54,7 +55,6 @@ loader.classList.add('hidden');
                const formData = new FormData(document.querySelector('#po-signup-form'));
                for (const [key, value] of formData.entries()) {
                     if (value !== '') {
-                         ////consolele.log(key, value);
                          customer[key] = value
                     } else {
                          emptyfields.push(key)

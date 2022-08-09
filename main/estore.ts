@@ -21,7 +21,7 @@ export const EshopPayments = async () => {
     poform.className = "po-payment-form hidden"
     poform.innerHTML = poForm()
     // add audios page selector 
-    const audiospage = document.getElementById("po-store-page")
+    const audiospage = document.getElementById("yc-store")
 
     if (audiospage) {
         const CART: CartItems[] = []

@@ -23,7 +23,6 @@ export const EshopPayments = async () => {
     // add audios page selector 
     const audiospage = document.getElementById("po-store-page")
     
-    audiospage.appendChild(poform)
     if(audiospage){
         audiospage.appendChild(poform)
     }

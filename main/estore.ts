@@ -1,3 +1,4 @@
+import { ButtonsService } from './services/buttons';
 import { YocoInputDto, YocoPayMetadataDto } from './../types/yoco.d';
 /**
  * ALL CODE IN THIS FILE WILL NEED TO BE REFACTORED AND DOCUMENTED FOR MAINTAINABILITY AND READABILITY PURPOSES.
@@ -29,7 +30,7 @@ export const EshopPayments = async () => {
         const cartIcon = document.createElement("div")
         cartIcon.id = "po-cart-icon"
         cartIcon.className = "po-cart-icon"
-        cartIcon.innerHTML = `<div class="cartContanier" id='cartContanier' data-toggle="modal" data-target="#mbr-popup-ji">
+        cartIcon.innerHTML = `<div class="cartContanier hidden" id='cartContanier' data-toggle="modal" data-target="#mbr-popup-ji">
              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -37,14 +38,8 @@ export const EshopPayments = async () => {
         </div>`;
         // Add the cart icon to the page and make it visible with a z-index of 23999 
         document.body.appendChild(cartIcon)
-        // Select The Cart Form 
-        const cartPymentForm = document.getElementById("po-payment-form")
-        // make the cart icon clickable and open the cart modal when clicked 
-        const iconContainer = document.getElementById("cartContanier")
-        iconContainer.addEventListener("click", (e) => {
-            alert("cart clicked")
-            
-        })
+        ButtonsService()
+      
     }
     // const modal = document.getElementById("yastore")
     // if (modal) { modal.parentNode!.insertBefore(poform, modal.nextSibling) }
@@ -74,8 +69,6 @@ export const EshopPayments = async () => {
     //     document.body.appendChild(shorpingCart)
 
 
-    //     const cartTotal = document.getElementById('cartTotal')!
-    //     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
     //     eshopPaymentForm.classList.add('hidden')
     //     const link = document.getElementsByTagName("a")
     //     /**

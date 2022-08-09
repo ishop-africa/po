@@ -4,6 +4,11 @@
 if [ "$1" == "BUILD" ]; then 
     webpack --env production -o build
     exit 0
+elif
+    [ "$1" == "BUILD_LOCAL" ]; then
+    webpack --env production 
+    exit 0
+
 else
     if [ "$1" == "LOCAL" ]; then
         echo "Usage: build.sh <version>"

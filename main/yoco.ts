@@ -7,12 +7,11 @@ const {key, url} = auth
 const payments = new PaymentsService(key,url);
 const paynow = (data: PaymentDetailsDto) => {
     payments.YocoPayment(data);
-  
 }
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
   const pubkey = await payments.getPubKey();
 
-  
+    alert(pubkey);
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: pubkey 

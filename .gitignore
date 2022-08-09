@@ -10,3 +10,6 @@ dist/oracle.js
 .output/*.js
 /images
 assets/images
+.DS_Store
+demo
+/dist/*.js

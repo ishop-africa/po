@@ -7,7 +7,7 @@ import { auth } from './key';
 import { PaymentsService } from './payment-auth';
 (async () => {
      // Fetches the data from the server
-     await new PaymentsService(auth.key, auth.url).getClientKeys();
+     await new PaymentsService(auth.key, auth.url).getPubKey();
      // Runs if the page is index.html
      makePopup();
      // Estore

@@ -37,10 +37,18 @@ export const EshopPayments = async () => {
         </div>`;
         // Add the cart icon to the page and make it visible with a z-index of 23999 
         document.body.appendChild(cartIcon)
-   
+        // Select The Cart Form 
+        const cartPymentForm = document.getElementById("po-payment-form")
         // make the cart icon clickable and open the cart modal when clicked 
-        cartIcon.addEventListener("click", () => {
-            alert("cart clicked, please remember to enable the cart when you toss me like this")
+        cartIcon.addEventListener("click", (e) => {
+            e.preventDefault()
+            cartPymentForm.classList.toggle("hidden")
+            // make  cartPymentForm z-index higher than the cart icon
+            // hide the cart icon when the cart is open
+            const u = e.target as HTMLElement
+            u.classList.toggle("hidden")
+            document.getElementById("cartContanier").classList.toggle("hidden")
+            
             
         })
     }

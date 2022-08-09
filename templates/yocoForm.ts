@@ -38,13 +38,13 @@ export const ShopingOrderSuccessfull = (name: string): string => `
 </div>`
 
 export const poForm = (): string => `
-<div >
+<div ></div>
 <div id="cartDtails mx-3" class="cartDtails po-cart">
 
   <div class="CartItemsContainer" id="CartItemsContainer"></div>
 
 </div>
-<div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+<div class="relative" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 
   <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 

@@ -16,13 +16,6 @@ import { EshopService } from './services/eshop-service';
  * o-payment-form. if this id doe not exists the cart will not be rendered.
  */
 export const EshopPayments = async () => {
-    // GET THE CLIENT KEYS FROM THE SERVER
-   
-
-    var yoco = document.createElement('script');
-    yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
-    document.head.appendChild(yoco);
-
     const poform = document.createElement("div")
     poform.id = "po-payment-form"
     poform.className = "po-payment-form hidden"

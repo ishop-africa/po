@@ -59,7 +59,6 @@ export const ButtonsService = (service: EshopService) => {
                 service.addToCart({ name, category, unitPrice })
                 cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
                 service.renderCart
-
             })
         }
     }
@@ -93,9 +92,26 @@ export const ButtonsService = (service: EshopService) => {
         closeCart[close].addEventListener('click', () => {
             cartPymentForm.classList.toggle('hidden')
             iconContainer.classList.toggle("z-10")
-           
-        })    
+
+        })
+    }
+    const removeFromCart = document.getElementsByClassName("removeFromCart")
+    for (let r = 0; r < removeFromCart.length; r++) {
+        const current = removeFromCart[r] as HTMLElement
+       (function(current){
+        current.addEventListener('click', (e) => {
+            const current = e.target as HTMLElement
+            console.log(current)
+            const index= current.id.split('_')[1]
+            service.removeFromCart(service.getCart()[index])
+            cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+        service.renderCart
+           location.reload()
+        } )
+       })(current)
     }
 
+  
 
 }
+

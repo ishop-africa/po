@@ -40,7 +40,8 @@ export const EshopPayments = async () => {
    
         // make the cart icon clickable and open the cart modal when clicked 
         cartIcon.addEventListener("click", () => {
-
+            alert("cart clicked, please remember to enable the cart when you toss me like this")
+            
         })
     }
     // const modal = document.getElementById("yastore")

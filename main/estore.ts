@@ -18,11 +18,11 @@ import { EshopService } from './services/eshop-service';
  */
 export const EshopPayments = async () => {
     const poform = document.createElement("div")
-    poform.id = "po-payment-form"
-    poform.className = "po-payment-form hidden"
+    poform.id = "yc-payment"
+    poform.className = "yc-payment hidden"
     poform.innerHTML = poForm()
     // add audios page selector 
-    const audiospage = document.getElementById("po-store-page")
+    const audiospage = document.getElementById("yc-store")
     
     if(audiospage){
         audiospage.appendChild(poform)
@@ -38,13 +38,16 @@ export const EshopPayments = async () => {
         </div>`;
         // Add the cart icon to the page and make it visible with a z-index of 23999 
         document.body.appendChild(cartIcon)
-        ButtonsService()
+        const CART: CartItems[] = []
+        // initiating an a new EshopService instance
+        const service = new EshopService(CART)
+        ButtonsService(service)
       
     }
     // const modal = document.getElementById("yastore")
     // if (modal) { modal.parentNode!.insertBefore(poform, modal.nextSibling) }
 
-    // const eshopPaymentForm = document.getElementById("po-payment-form")
+    // const eshopPaymentForm = document.getElementById("yc-payment")
 
     // const closeCart = document.getElementsByClassName("closeCart")
     // var CART: CartItems[] = [];
@@ -121,7 +124,7 @@ export const EshopPayments = async () => {
     //     }
     //     eshopPaymentForm.addEventListener('submit', (e) => {
     //         e.preventDefault();
-    //         const formData = new FormData(document.querySelector('#po-payment-form') as HTMLFormElement);
+    //         const formData = new FormData(document.querySelector('#yc-payment') as HTMLFormElement);
     //         const customer = {}
     //         // @ts-ignore
     //         for (const [key, value] of formData.entries()) {

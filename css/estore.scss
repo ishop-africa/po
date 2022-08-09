@@ -30,7 +30,25 @@
 
 }
 
+#rangeMinus:hover,
+#rangePlus:hover {
+    cursor: pointer;
+    background: #ccc;
+}
 
+#rangeMinus {
+    border-radius: 0 10% 10 0;
+    border: 1px solid #ccc;
+
+
+}
+
+#rangePlus {
+    border-radius: 10% 0 0 10%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
 
 .subItem,
 .addItem {

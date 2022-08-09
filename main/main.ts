@@ -11,7 +11,7 @@ loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
 document.body.appendChild(loader);
-// loader.classList.add('hidden');
+loader.classList.add('hidden');
 (async () => {
      makePopup();
      await curencies()
@@ -19,14 +19,14 @@ document.body.appendChild(loader);
      yoco.src = 'https://js.yoco.com/sdk/v1/yoco-sdk-web.js';
      document.head.appendChild(yoco);
      const money = document.getElementById('make-money-with-peter-oracle');
-    
+    if (money) {
+     money.classList.toggle('hidden');
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);
-     ////consolele.log(urlParams.get('al'));
+     // if registering with afliate link collact the link
      if (urlParams.get('al')) {
-          const al = urlParams.get('al');
-          afliateToekn = al;
+          afliateToekn = urlParams.get('al');
      }
    
           const congratsDiv = document.getElementById('congratulations');
@@ -35,7 +35,6 @@ document.body.appendChild(loader);
           const amount = sessionStorage.getItem('poAmmount')?.toString()
           //  @ts-ignore 
           const amountInCents = Math.ceil(parseInt(amount) * 100);
-          const publicKey = 'pk_test_ed3c54a6gOol69qa7f45' // Cahnge this when going live
           ////consolele.log(amountInCents, amount)
           const Afliate = false;
           const emptyfields = []
@@ -73,7 +72,7 @@ document.body.appendChild(loader);
                delete customer.description
 
                const yocoData = {
-                    amountInCents, publicKey, metadata, customer, description
+                    amountInCents, metadata, customer, description
                }
                 // @ts-ignore
                 initYoco(yocoData)
@@ -86,6 +85,7 @@ document.body.appendChild(loader);
                     loader.classList.add('hidden')
                 },4000)
           })
+     }
 })()
 
 

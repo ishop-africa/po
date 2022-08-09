@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
   entry: './main/index.ts',
-  mode: 'production',
+  mode: 'development',
   output: {
     path: `${__dirname}/dist`,
     filename: 'oracle.js',

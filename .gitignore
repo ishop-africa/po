@@ -6,6 +6,7 @@ key.js
 src/js/
 /src/js
 dist/oracle.js
-.output
+./build/oracle.js
+.output/*.js
 /images
 assets/images

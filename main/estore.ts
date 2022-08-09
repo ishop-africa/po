@@ -40,15 +40,9 @@ export const EshopPayments = async () => {
         // Select The Cart Form 
         const cartPymentForm = document.getElementById("po-payment-form")
         // make the cart icon clickable and open the cart modal when clicked 
-        cartIcon.addEventListener("click", (e) => {
-            e.preventDefault()
-            cartPymentForm.classList.toggle("hidden")
-            // make  cartPymentForm z-index higher than the cart icon
-            // hide the cart icon when the cart is open
-            const u = e.target as HTMLElement
-            u.classList.toggle("hidden")
-            document.getElementById("cartContanier").classList.toggle("hidden")
-            
+        const iconContainer = document.getElementById("cartContanier")
+        iconContainer.addEventListener("click", (e) => {
+            alert("cart clicked")
             
         })
     }

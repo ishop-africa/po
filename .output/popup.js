@@ -4,8 +4,8 @@ export const makePopup = () => {
     <div class="popup-content ">
       <div class="popup-header">
         <div class="popup-title ">
-          <p>SIGN UP AND LEARN</p>
-          <p class=" red-txt  ">18 MODERN WAYS TO MAKE MONEY ONLINE</p>
+          <p class='signUp'>SIGN UP AND LEARN</p>
+          <p class="red-pop">18 MODERN WAYS TO MAKE MONEY ONLINE</p>
           <p class="ltitle">FOR ONLY $45</p>
         </div>
         <button class="popup-close ">
@@ -25,7 +25,9 @@ export const makePopup = () => {
     const makeMoneyWithUs = document.getElementById('money-cta');
     if (makeMoneyWithUs) {
         setTimeout(() => {
-            makeMoneyWithUs.classList.toggle('hidden');
+            if (!localStorage.getItem('po18L')) {
+                makeMoneyWithUs.classList.toggle('hidden');
+            }
         }, 1000);
         makeMoneyWithUs.innerHTML = elem;
         makeMoneyWithUs.classList.add('hidden');

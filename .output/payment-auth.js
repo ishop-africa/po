@@ -49,6 +49,7 @@ export class PaymentsService {
             document.getElementById('payment-form').classList.toggle('hidden');
             document.getElementById('po-title').classList.toggle('hidden');
             alert("payment successful");
+            localStorage.setItem('po18L', 'yes');
         }
         else {
             alert("payment failed Please Try Again");

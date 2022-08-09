@@ -6,14 +6,12 @@ import { CartItems } from '../types/estore';
 const {key, url} = auth
 const payments = new PaymentsService(key,url);
 const paynow = (data: PaymentDetailsDto) => {
-    // Read api key from key.json
-  
     payments.YocoPayment(data);
   
 }
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
   const pubkey = await payments.getPubKey();
-  console.log(pubkey)
+
   alert(pubkey)
     // @ts-ignore 
     var sdk = await new window.YocoSDK({

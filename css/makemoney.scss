@@ -1,0 +1,160 @@
+.money-cta {
+    position: fixed;
+    top: 0;
+    background-color: #060607;
+    opacity: 0.99;
+    width: 100vw;
+    height: 100vh;
+    z-index: 28999 !important;
+    padding: 1rem;
+
+    .popup-inner {
+        .popup-content {
+            @media screen and (max-width: 32rem) {
+                width: 100%;
+
+                padding: .1rem !important
+            }
+
+            .popup-header {
+                .popup-title {
+                    @media screen and (min-width: 768px) {
+                        font-size: 3.875rem !important;
+                        line-height: 5.25rem !important;
+                    }
+
+                    @media screen and (max-width: 32rem) {
+                        font-size: 1.875rem;
+                        line-height: 1.9rem;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .sign-up {
+                        @media screen and (max-width: 32rem) {
+                            font-size: 1.2rem;
+                            line-height: 1.5rem;
+                        }
+                        padding-left: 1rem;
+
+                    }
+
+                    .red-txt {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        padding-left: 1.1rem;
+                        padding-right: 1.1rem;
+                        color: #F87171;
+
+                    }
+
+                    .ltitle {
+                        text-align: right;
+                        text-decoration: underline;
+                        text-decoration-color: #7c2d12;
+                       @media screen and (max-width: 32rem) {
+                            font-size: 1.2rem;
+                            line-height: 1.5rem;
+                       }
+                    }
+                }
+
+                .popup-close {
+                    position: absolute;
+                    top: 0rem;
+                    right: -1rem;
+                    margin: 1rem;
+                    border-radius: 50%;
+                    border: 1px solid gray;
+
+                    .po-close-icon {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                    }
+
+
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 32rem) {
+    .popup-title {
+        font-size: 1.875rem;
+        line-height: 1.9rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        padding: .1rem !important
+    }
+
+    .popup-inner {
+        padding-left: 0.4rem !important;
+        padding-right: 0.4rem !important;
+    }
+
+    .money-cta {
+        padding: 0.4rem !important;
+    }
+
+    .ltitle,
+    .sign-up {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .sign-up {
+        text-decoration: underline;
+        text-decoration-color: #7c2d12;
+    }
+
+    .ltitle {
+        text-align: left !important;
+    }
+
+}
+
+
+.popup-content {
+    display: flex;
+    position: relative;
+    padding: 0.5rem;
+    background: url(https://et.peteroracle.co.za/assets/images/p1-1419x1761.jpg) no-repeat center center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-width: 33rem) {
+        padding: 0.4rem !important;
+        justify-content: center;
+        background-size: cover;
+    
+        
+    }
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+  }
+  
+  .popup-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem .4rem;
+    position: relative;
+    background-color: #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    @media screen and (min-width: 33rem) {
+        padding: 1rem .4rem 1rem 0.4rem;
+        justify-content: center;
+        background-color: #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+    }
+  }
+  
+  

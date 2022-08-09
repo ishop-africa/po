@@ -20,7 +20,6 @@ export class PaymentsService {
                 },
                 body: JSON.stringify(data)
             });
-            //console.log(data)
             this.response = await pay.json().then(res => res);
             this.congrate(this.response);
 
@@ -31,7 +30,6 @@ export class PaymentsService {
                 message: error.message
 
             }
-            //console.log(error)
         }
         return this.response;
     }
@@ -79,17 +77,14 @@ export class PaymentsService {
                 }
             });
             const resp = await keys.json().then(res => res);
-            console.log(resp)
             sessionStorage.setItem('yapee-00', resp.secrets.pubKey);
             return resp
         } catch (error) {
-            console.log({error, provider})
         }
     }
     async  getPubKey(): Promise<string> {
         const key = sessionStorage.getItem('yapee-00');
         if (key) {
-            console.log(key)
             return key;
         }else{
             await this.getClientKeys();

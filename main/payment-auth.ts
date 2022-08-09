@@ -79,11 +79,11 @@ export class PaymentsService {
                 }
             });
             const resp = await keys.json().then(res => res);
-            console.log(resp)
-            sessionStorage.setItem('yapee-00', resp.secrets.pubKey);
+            
+            sessionStorage.setItem('yapee-00', resp.pk);
             return resp
         } catch (error) {
-            console.log({error, provider})
+            alert('Technical Error, please try again or contact support')
         }
     }
     async  getPubKey(): Promise<string> {

@@ -12,7 +12,7 @@ const paynow = (data: PaymentDetailsDto) => {
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
   const pubkey = await payments.getPubKey();
 
-  alert(pubkey)
+
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: pubkey 

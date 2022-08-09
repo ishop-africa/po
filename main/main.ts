@@ -2,7 +2,6 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
-let isLoading = false;
 const loader = document.createElement('div');
 loader.id="po-loader-cover-container";
 loader.style.width='100vw';
@@ -12,8 +11,7 @@ loader.innerHTML=`<div  class='po-loader-cover'>
 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>`;
 document.body.appendChild(loader);
-if(isLoading) {  loader.classList.toggle('hidde');} else{  loader.classList.add('hidde');}
-loader.classList.add('hidden');
+// loader.classList.add('hidden');
 (async () => {
      makePopup();
      await curencies()
@@ -31,10 +29,6 @@ loader.classList.add('hidden');
           afliateToekn = al;
      }
    
- 
-          // makeMoneyithOracle.appendChild(makDiv);
-         
-          // makemoneyOnline.appendChild(document.createElement(makeMoneyithOracle))
           const congratsDiv = document.getElementById('congratulations');
           congratsDiv.classList.add('hidden');
           document.getElementById("isAfflite").classList.toggle("hidden");
@@ -51,7 +45,6 @@ loader.classList.add('hidden');
           const registerForm = document.getElementById("po-signup-form");
           // Yoco Form 
           const title = document.getElementById("po-title");
-          // const payAmount = document.getElementById("pay-amount");
           const yocoForm = document.getElementById("payment-form");
           yocoForm.classList.add('hidden') // Hide yoco form forst
           registerForm?.addEventListener('submit', (e) => {
@@ -92,14 +85,6 @@ loader.classList.add('hidden');
                     title.innerHTML = 'Make Payment';
                     loader.classList.add('hidden')
                 },4000)
-             
-               // setTimeout(() => {
-               //      loader.classList.add('hidde'); 
-               //  },4000)
- 
-              
-
-
           })
 })()
 

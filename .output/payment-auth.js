@@ -7,15 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { ShopingOrderSuccessfull } from "../templates/index";
 export class PaymentsService {
     constructor(yapeeKey, url) {
         this.yapeeKey = yapeeKey;
         this.url = url;
+        this.loader = document.getElementById('po-loader-cover-container');
     }
-    YocoPayment(data) {
+    YocoPayment(data, shoper = false) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const pay = yield fetch(`${this.url}rec`, {
+                const strings = JSON.stringify(data);
+                const endpoint = 'shippingAddress' in data.metadata ? 'rec' : 'rec';
+                const pay = yield fetch(`${this.url}${endpoint}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -31,29 +35,69 @@ export class PaymentsService {
                     success: false,
                     message: error.message
                 };
-                console.log(error);
             }
             return this.response;
         });
     }
     congrate(response) {
         if (response.success) {
-            const { metadata, customer } = response.data;
-            document.getElementById('po-loader-cover-container').classList.toggle('hidden');
-            document.getElementById('userName').innerHTML = customer.firstName;
-            if (metadata.affliate === "yes") {
-                document.getElementById("isAfflite").classList.toggle("hidden");
-                document.getElementById("isAfflite").innerHTML = `and your alfliation link`;
+            document.getElementById('po-loader-cover-container').classList.add('hidden');
+            if ('shippingAddress' in response.data.metadata) {
+                document.getElementById('PaymentDiv').classList.toggle('hidden');
+                const successOrder = document.getElementById('order-success');
+                const { firstName } = response.data.metadata;
+                successOrder.innerHTML = ShopingOrderSuccessfull(`${firstName}`);
+                document.getElementById('OrderSuccess').classList.toggle('hidden');
+                document.getElementById('orderComplete').addEventListener('click', () => { });
             }
-            document.getElementById('congratulations').classList.toggle('hidden');
-            document.getElementById('payment-form').classList.toggle('hidden');
-            document.getElementById('po-title').classList.toggle('hidden');
-            alert("payment successful");
-            localStorage.setItem('po18L', 'yes');
+            else {
+                const { metadata, customer } = response.data;
+                document.getElementById('userName').innerHTML = customer.firstName;
+                if (metadata.affliate === "yes") {
+                    document.getElementById("isAfflite").classList.toggle("hidden");
+                    document.getElementById("isAfflite").innerHTML = `and your alfliation link`;
+                }
+                document.getElementById('congratulations').classList.toggle('hidden');
+                document.getElementById('payment-form').classList.toggle('hidden');
+                document.getElementById('po-title').classList.toggle('hidden');
+            }
         }
         else {
             alert("payment failed Please Try Again");
             document.getElementById('po-loader-cover-container').classList.toggle('hidden');
         }
+    }
+    getClientKeys(provider = 'YOCO') {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const keys = yield fetch(`${this.url}auth-client-keys`, {
+                    method: 'POST',
+                    body: JSON.stringify({ provider }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + this.yapeeKey
+                    }
+                });
+                const resp = yield keys.json().then(res => res);
+                console.log(resp);
+                sessionStorage.setItem('yapee-00', resp.secrets.pubKey);
+                return resp;
+            }
+            catch (error) {
+                console.log({ error, provider });
+            }
+        });
+    }
+    getPubKey() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const key = sessionStorage.getItem('yapee-00');
+            if (key) {
+                return key;
+            }
+            else {
+                yield this.getClientKeys();
+            }
+            return sessionStorage.getItem('yapee-00');
+        });
     }
 }

@@ -1,0 +1,45 @@
+// https://et.peteroracle.co.za/assets/images/p1-1419x1761.jpg
+
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-size: cover;
+
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .money-cta {
+    
+    position: fixed;
+    top: 0;
+    background-color: #F3F4F6;
+    opacity: 0.99;
+    width: 100vw;
+    height: 100vh;
+    z-index: 39999;
+    padding: 1rem;
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: -1rem;
+    left: -2rem;
+    @media screen and (max-width: 32rem) {
+      top: -3rem;
+      left: 0.8rem;
+    }
+        
+    border-radius: 50%;
+    border: #7c2d12 solid 1px;
+    padding: 1px;
+    margin: 0 auto
+    // /* margin: 1rem; */
+  }
+  
+  .po-close-icon {
+    width: 2rem;
+    height: 2rem;
+  }

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: `yc-store.v${version}.js`,
+    filename: `yc-store.${version}.js`,
   },
   module: {
     rules: [

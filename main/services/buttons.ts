@@ -9,11 +9,7 @@ export const ButtonsService = (service: EshopService) => {
     // the cart icon trigger
     const iconContainer = document.getElementById("cartContanier")
 
-    // iconContainer.addEventListener("click", (e) => {
-    //     e.preventDefault()
-    //     console.log(cartPymentForm)
-    //     iconContainer.classList.toggle("z-10")
-    // })
+
 
     const cartTotal = document.getElementById('cartTotal')!
     cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
@@ -39,7 +35,6 @@ export const ButtonsService = (service: EshopService) => {
                 // eshopPaymentForm.classList.toggle('hidden')
             })
         } else if (link[i].innerText === "Order Book Now") {
-            // console.log(link[i].parentElement.nextSibling)
             link[i].addEventListener('click', (e) => {
                 e.preventDefault()
                 const current = e.target as HTMLAnchorElement
@@ -77,7 +72,6 @@ export const ButtonsService = (service: EshopService) => {
                 customer[key] = value
             }
         }
-        //console.log(customer)
     })
     const cartContanier = document.getElementById('cartContanier')!
     // On click on the cart Icon show the cart
@@ -98,20 +92,20 @@ export const ButtonsService = (service: EshopService) => {
     const removeFromCart = document.getElementsByClassName("removeFromCart")
     for (let r = 0; r < removeFromCart.length; r++) {
         const current = removeFromCart[r] as HTMLElement
-       (function(current){
-        current.addEventListener('click', (e) => {
-            const current = e.target as HTMLElement
-            console.log(current)
-            const index= current.id.split('_')[1]
-            service.removeFromCart(service.getCart()[index])
-            cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
-        service.renderCart
-           location.reload()
-        } )
-       })(current)
+        (function (current) {
+            current.addEventListener('click', (e) => {
+                const current = e.target as HTMLElement
+
+                const index = current.id.split('_')[1]
+                service.removeFromCart(service.getCart()[index])
+                cartTotal.innerHTML = '' + service.calculateTotal('itemsInCart')
+                service.renderCart
+                location.reload()
+            })
+        })(current)
     }
 
-  
+
 
 }
 

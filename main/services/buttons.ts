@@ -6,15 +6,15 @@ export const ButtonsService = (service: EshopService ) => {
     // initiating an a new EshopService instance
   
     // the form container
-    const cartPymentForm = document.getElementById("po-payment-form")
+    const cartPymentForm = document.getElementById("yc-store")
     // the cart icon trigger
     const iconContainer = document.getElementById("cartContanier")
 
     iconContainer.addEventListener("click", (e) => {
         e.preventDefault()
         cartPymentForm.classList.toggle("hidden")
-        iconContainer.classList.add("z-10")
-        disableGBWidget('disable')
+        iconContainer.classList.toggle("z-10")
+        // disableGBWidget('disable')
     })
 
     const cartTotal = document.getElementById('cartTotal')!

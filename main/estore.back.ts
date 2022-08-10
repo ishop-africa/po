@@ -6,6 +6,7 @@ import { YocoInputDto, YocoPayMetadataDto } from '../types/yoco';
  */
 import { CartItems, PersonalDetailsForm } from '../types/estore';
 import { initYoco } from './yoco';
+import { InLineYocoForm, ycForm } from '../templates/index';
 
 import { EshopService } from './services/eshop-service';
 /**
@@ -18,9 +19,10 @@ export const EshopPayments = async () => {
     const poform = document.createElement("div")
     poform.id = "po-payment-form"
     poform.className = "po-payment-form hidden"
-    // poform.innerHTML = poForm()
+    poform.innerHTML = ycForm()
     // add audios page selector 
     const audiospage = document.getElementById("yc-store")
+
     if (audiospage) {
         const CART: CartItems[] = []
        
@@ -156,7 +158,7 @@ export const EshopPayments = async () => {
                         document.getElementById('subTotals')!.innerHTML = '' + service.formatCurrency(service.calculateTotal('amountInCents'))
                         const PaymentDiv = document.getElementById('PaymentDiv')
                         const yocoForm = document.getElementById('AddYocoForm')!
-                        // yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents / 100))
+                        yocoForm.innerHTML = InLineYocoForm(service.formatCurrency(amountInCents / 100))
                         const loader = document.getElementById('po-loader-cover-container')
                         personalDetailsDiv!.className = 'bg-opacity-75'
                         const YocoData: YocoInputDto = { customer, metadata, description, amountInCents, cart: service.getCart() }

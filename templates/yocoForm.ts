@@ -39,119 +39,215 @@ export const ShopingOrderSuccessfull = (name: string): string => `
 
 export const ycForm = (): string =>
  `
- 
-<div class="relative h-full w-full color-red-9000 z-40">
+ <div class="relative" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    
+ <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+ <div class="fixed inset-0 overflow-hidden">
 
-  <div class="fixed inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <!--
-          Slide-over panel, show/hide based on slide-over state.
+   <div class="absolute inset-0 overflow-hidden">
+     <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
 
-          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-0"
-            To: "translate-x-full"
-        -->
-        <div class="pointer-events-auto w-screen max-w-md">
-          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
-                <div class="ml-3 flex h-7 items-center">
-                  <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
-                    <span class="sr-only">Close panel</span>
-                    <!-- Heroicon name: outline/x -->
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+       <div class="pointer-events-auto w-screen max-w-md">
 
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul role="list" class="-my-6 divide-y divide-gray-200">
-                    <li class="flex py-6">
-                      <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
-                      </div>
+      
+         <div id="CartItemsDiv" class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+           <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+             <div class="flex items-start justify-between">
+               <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+               <div class="ml-3 flex h-7 items-center">
+                 <button class="closeCart" type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                   <span class="sr-only">Close panel</span>
+                   <!-- Heroicon name: outline/x -->
+                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                   </svg>
+                 </button>
+               </div>
+             </div>
 
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#"> Throwback Hip Bag </a>
-                            </h3>
-                            <p class="ml-4">$90.00</p>
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500">Salmon</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
+             <div class="mt-8">
+               <div class="flow-root">
+                 <ul role="list" id="CartItemsList" class="-my-6 divide-y divide-gray-200">
 
-                          <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                 </ul>
+               </div>
+             </div>
+           </div>
 
-                    <li class="flex py-6">
-                      <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
-                      </div>
+           <div class="border-t border-gray-200 py-6 px-4 sm:px-6" data-cartNotEmpty="true">
+             <div class="flex justify-between text-base font-medium text-gray-900">
+               <p>Subtotal</p>
+               <p id="subTotal"></p>
+             </div>
+             <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+             <div class="mt-6">
+               <button id="checkoutBtn"
+                 class="flex w-full items-center justify-center rounded-md border border-transparent bg-yellow-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-yellow-700">Checkout</button>
+             </div>
+             <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+               <p>
+                 or <button type="button"
+                   class="font-medium closeCart text-yellow-600 hover:text-yellow-500">Continue
+                   Shopping<span aria-hidden="true"> &rarr;</span></button>
+               </p>
+             </div>
+           </div>
+         </div>
 
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#"> Medium Stuff Satchel </a>
-                            </h3>
-                            <p class="ml-4">$32.00</p>
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500">Blue</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
+         <!-- // Personal Details Form here  -->
+         <div id="PersonalDetailsDiv" data-next="PersonalDetailsDiv" data-back="CartItemsDiv"
+           class=" hidden flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+           <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+             <div class="flex items-start justify-between">
+               <h2 class="text-lg font-medium text-gray-900 flex justify-center items-center"
+                 id="slide-over-title">
+              
+                 <span>Shipping Information</span>
+               </h2>
+               <div class="ml-3 flex h-7 items-center">
+                 <button class="closeCart" type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                   <span class="sr-only">Close panel</span>
+                   <!-- Heroicon name: outline/x -->
+                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                   </svg>
+                 </button>
+               </div>
+             </div>
 
-                          <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+             
+             <div class="mt-8">
+               <div class="flow-root" id="PersonalDetailsFormContainer">
+                 <form id="PersonalDetailsCollectionForm">
+                   <div class="col-span-6 sm:col-span-3">
+                     <label for="firstName" class="block text-sm font-medium text-gray-700">First name</label>
+                     <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                       class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+                   </div>
 
-                    <!-- More products... -->
-                  </ul>
-                </div>
-              </div>
-            </div>
+                   <div class="col-span-6 sm:col-span-3">
+                     <label for="lastName" class="block text-sm font-medium text-gray-700">Last name</label>
+                     <input type="text" name="lastName" id="lastName"
+                       class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2" placeholder="Last Name">
+                   </div>
 
-            <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-              <div class="flex justify-between text-base font-medium text-gray-900">
-                <p>Subtotal</p>
-                <p>$262.00</p>
-              </div>
-              <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-              <div class="mt-6">
-                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
-              </div>
-              <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                <p>
-                  or <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Continue Shopping<span aria-hidden="true"> &rarr;</span></button>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                   <div class="col-span-6 sm:col-span-4">
+                     <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                     <input type="email" name="email" id="email" autocomplete="email" placeholder="Email Address"
+                       class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+                   </div>
+
+                   <div class="col-span-6 sm:col-span-4">
+                     <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                     <input type="phone" name="phone" id="phone" autocomplete="phone" placeholder="Phone Number"
+                       class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+                   </div>
+
+                   <div>
+                     <label for="shippingAddress" class="block text-sm font-medium text-gray-700"> Shipping Address
+                     </label>
+                     <div class="mt-1">
+                       <textarea id="shippingAddress" name="shippingAddress" rows="3" placeholder="Shipping Address"
+                         class="shadow-sm focus:ring-yellow-500  p-3 focus:border-yellow-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                         placeholder="your address here"></textarea>
+                     </div>
+                     <p class="mt-2 text-sm text-gray-500">Enter a valid adress to deliver your order.</p>
+                   </div>
+                   <div class="mt-6">
+                     <button id="to" type="submit"
+                       class="flex w-full items-center justify-center rounded-md border border-transparent bg-yellow-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-yellow-700">Proceed
+                       with Payment</button>
+                   </div>
+                 </form>
+               </div>
+             </div>
+           </div>
+
+         </div>
+
+         <!-- // Payment Form Here  -->
+
+         <div id="PaymentDiv" data-back='PersonalDetailsDiv'
+           class=" hidden flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+           <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+             <div class="flex items-start justify-between">
+               <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+                 <span>Make payment</span>
+               </h2>
+               <div class="ml-3 flex h-7 items-center">
+                 <button class="closeCart" type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                   <span class="sr-only">Close panel</span>
+                   <!-- Heroicon name: outline/x -->
+                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" aria-hidden="true">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                   </svg>
+                 </button>
+               </div>
+             </div>
+
+             <div class="mt-8">
+               <div class="flow-root">
+                 <div class="yocoform" id="AddYocoForm">
+
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <div class="border-t border-gray-200 py-6 px-4 sm:px-6" data-cartNotEmpty="true">
+             <div class="flex justify-between text-base font-medium text-gray-900">
+               <p>Subtotal</p>
+               <p id="subTotals"></p>
+             </div>
+           
+           </div>
+         </div>
+
+         <!-- // Order-success div here  --> 
+         <div id="OrderSuccess" data-back='OrderSuccessful'
+         class=" hidden flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+         <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+           <div class="flex items-start justify-between">
+             <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+               <span>Order Complete</span>
+             </h2>
+             <div class="ml-3 flex h-7 items-center">
+               <button id="orderCompleteAndDone" type="button" class="-m-2 orderCompleteAndDone p-2 text-gray-400 hover:text-gray-500">
+                 <span class="sr-only">Close panel</span>
+                 <!-- Heroicon name: outline/x -->
+                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke-width="2" stroke="currentColor" aria-hidden="true">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                 </svg>
+               </button>
+             </div>
+           </div>
+
+           <div class="mt-8">
+             <div class="flow-root">
+               <div class="yocoform" id="order-success">
+                 
+               </div>
+               <div class="mt-6">
+                 <button
+                   class="flex w-full orderCompleteAndDone items-center justify-center rounded-md border border-transparent bg-yellow-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-yellow-700">Close</button>
+               </div>
+             </div>
+           </div>
+         </div>
+        
+       
+       </div>
+       </div>
+     </div>
+   </div>
+   <!-- Personal Details  -->
+ </div>
+</div>
 </div>
 
 `

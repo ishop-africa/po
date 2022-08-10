@@ -17,9 +17,10 @@ import { EshopService } from './services/eshop-service';
  */
 export const EshopPayments = async () => {
     const ycDiv = document.getElementById("yc-store")
-    ycDiv.className = "hidden "
+  
     // add audios page selector 
     if (ycDiv) {
+        ycDiv.className = "hidden "
         ycDiv.innerHTML = ycForm()
         const CART: CartItems[] = []
         // Create an instance shopping cart icon

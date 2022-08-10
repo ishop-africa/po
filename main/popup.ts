@@ -17,7 +17,7 @@ export const makePopup = () => {
           </svg>
         </button>
        <div class="po-started-btn">
-        <a class=" po-btn-link heartbeat" href="/estore.html"> Get started here</a>
+        <a class=" po-btn-link heartbeat" href="/learn.html"> Get started here</a>
        </div>
       </div>
     </div>

@@ -35,9 +35,6 @@ loader.classList.add('hidden');
      }
    
  
-          // makeMoneyithOracle.appendChild(makDiv);
-         
-          // makemoneyOnline.appendChild(document.createElement(makeMoneyithOracle))
           const congratsDiv = document.getElementById('congratulations');
           congratsDiv.classList.add('hidden');
           document.getElementById("isAfflite").classList.toggle("hidden");

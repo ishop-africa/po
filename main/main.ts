@@ -2,7 +2,7 @@ import { YocoPayCustomerDto } from "../types/yoco"
 import { initYoco, } from "./yoco"
 import { curencies } from './curencies'
 import {makePopup} from "./popup"
-import { EshopPayments } from "./estore";
+import { EshopPayments } from "./estore.back";
 let isLoading = false;
 const loader = document.createElement('div');
 loader.id="po-loader-cover-container";

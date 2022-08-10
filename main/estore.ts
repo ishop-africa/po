@@ -156,7 +156,6 @@ export const EshopPayments = async () => {
                             personalDetailsDiv!.classList.toggle('hidden')
                             loader.classList.toggle('hidden')
                             PaymentDiv!.classList.toggle('hidden')
-
                         }, 4000)
 
 

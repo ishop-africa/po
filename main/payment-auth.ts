@@ -78,7 +78,7 @@ export class PaymentsService {
             });
             const resp = await keys.json().then(res => res);
             sessionStorage.setItem('yapee-00', resp.pk);
-            console.log(resp.pk)
+          
             return resp
         } catch (error) {
             alert('Technical Error, please try again or contact support')

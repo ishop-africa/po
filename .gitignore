@@ -5,7 +5,8 @@ key.ts
 key.js
 src/js/
 /src/js
-dist/oracle.js
+dist/*.js
 .output
 /images
 assets/images
+.DS_Store

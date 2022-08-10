@@ -151,10 +151,10 @@ export const EshopPayments = async () => {
                         personalDetailsDiv!.className = 'bg-opacity-75'
                         const YocoData: YocoInputDto = { customer, metadata, description, amountInCents, cart: service.getCart() }
                         initYoco(YocoData, true)
-                        loader!.classList.toggle('hidden')
+                        loader.classList.toggle('hidden')
                         setTimeout(() => {
                             personalDetailsDiv!.classList.toggle('hidden')
-                            loader!.classList.toggle('hidden')
+                            loader.classList.toggle('hidden')
                             PaymentDiv!.classList.toggle('hidden')
 
                         }, 4000)

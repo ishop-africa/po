@@ -1,10 +1,11 @@
 const path = require('path')
+const {version} = require('./package.json')
 module.exports = {
   entry: './main/index.ts',
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'oracle.js',
+    filename: `yc-store.v${version}.js`,
   },
   module: {
     rules: [

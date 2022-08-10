@@ -7,6 +7,7 @@
   "scripts": {
     "build": "./scripts/build.sh BUILD",
     "buildL": "./scripts/build.sh BUILD_LOCAL",
+    "deploy": "./scripts/deploy.sh DEPLOY",
     "dev": "webpack serve",
     "comp": "tsc -w",
     "app:dev": "./scripts/build.sh SETUP",

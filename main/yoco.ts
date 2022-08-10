@@ -11,7 +11,6 @@ const paynow = (data: PaymentDetailsDto) => {
  const initYoco = async  (data: YocoInputDto, returnData:boolean=false) => {
   const pubkey = await payments.getPubKey();
 
-    alert(pubkey);
     // @ts-ignore 
     var sdk = await new window.YocoSDK({
         publicKey: pubkey 
@@ -31,7 +30,7 @@ const paynow = (data: PaymentDetailsDto) => {
       inline.mount('#card-frame');
       if ('cart' in data) {
         cart = data.cart
-        console.log(cart)
+       
         delete data.cart
       }
 
@@ -64,7 +63,7 @@ const paynow = (data: PaymentDetailsDto) => {
               customer: data.customer,
               cartItems: cart? cart : []
             })
-            // alert("card successfully tokenised: " + token.id);
+            //alert("card successfully tokenised: " + token.id);
           }
         }).catch(function (error) {
           // Re-enable button now that request is complete

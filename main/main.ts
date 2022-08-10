@@ -28,7 +28,7 @@ loader.classList.add('hidden');
      let afliateToekn = ""
      const query = window.location.search;
      const urlParams = new URLSearchParams(query);
-     ////consolele.log(urlParams.get('al'));
+   
      if (urlParams.get('al')) {
           const al = urlParams.get('al');
           afliateToekn = al;
@@ -45,7 +45,7 @@ loader.classList.add('hidden');
           //  @ts-ignore 
           const amountInCents = Math.ceil(parseInt(amount) * 100);
           const publicKey = 'pk_test_ed3c54a6gOol69qa7f45' // Cahnge this when going live
-          ////consolele.log(amountInCents, amount)
+         
           const Afliate = false;
           const emptyfields = []
           // let metadata: YocoPayCustomerDto
@@ -65,7 +65,7 @@ loader.classList.add('hidden');
                const formData = new FormData(document.querySelector('#po-signup-form'));
                for (const [key, value] of formData.entries()) {
                     if (value !== '') {
-                         ////consolele.log(key, value);
+                        
                          customer[key] = value
                     } else {
                          emptyfields.push(key)

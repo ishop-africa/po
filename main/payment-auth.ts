@@ -2,7 +2,7 @@ import { ShopingOrderSuccessfull } from "../templates/index";
 import { AuthSecrets, PaymentDetailsDto, PaymentResponse } from "../types/yoco";
 
 export class PaymentsService {
-    // url: string = "http://localhost:6790/";
+  
     response: PaymentResponse;
     loader = document.getElementById('po-loader-cover-container')
     constructor(private yapeeKey: string, private url: string) { }

@@ -20,14 +20,14 @@ export const EshopPayments = async () => {
   
     // add audios page selector 
     if (ycDiv) {
-        ycDiv.className = "hidden "
+       
         ycDiv.innerHTML = ycForm()
         const CART: CartItems[] = []
         // Create an instance shopping cart icon
         const cartIcon = document.createElement("div")
         cartIcon.id = "po-cart-icon"
         cartIcon.className = "po-cart-icon"
-        cartIcon.innerHTML = `<div class="cartContanier hidden" id='cartContanier' data-toggle="modal" data-target="#mbr-popup-ji">
+        cartIcon.innerHTML = `<div class="cartContanier" id='cartContanier'>
              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -40,23 +40,6 @@ export const EshopPayments = async () => {
 
         const service = new EshopService(CART)
         ButtonsService(service)
-        paymentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(document.querySelector('#yc-store') as HTMLFormElement);
-            const customer = {}
-            // @ts-ignore
-            for (const [key, value] of formData.entries()) {
-                if (value !== '') {
-                    // @ts-ignore
-                    customer[key] = value
-                    key.replace(' ', '_')
-                    key.replace('-', '_')
-                    // @ts-ignore 
-                    customer[key] = value
-                }
-            }
-            //console.log(customer)
-        })
        
         const closeCart = document.getElementsByClassName('closeCart')!
         for (let close = 0; close < closeCart.length; close++) {

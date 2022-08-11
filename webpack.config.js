@@ -5,7 +5,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: `yapee.${version}.mini.js`,
+    filename: `estore.${version}.mini.js`,
   },
   module: {
     rules: [
